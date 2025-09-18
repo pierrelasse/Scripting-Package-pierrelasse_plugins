@@ -77,3 +77,7 @@ staff_chat.PERMISSION = "myserver.staff.chat"
 ### [pierrelasse/plugins/staff/spec](./@pierrelasse/plugins/staff/spec.lua)
 
 // TODO
+
+### [pierrelasse/plugins/staff/vanish](./@pierrelasse/plugins/staff/vanish.lua)
+
+// TODO
