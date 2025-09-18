@@ -85,3 +85,7 @@ staff_chat.PERMISSION = "myserver.staff.chat"
 ### [pierrelasse/plugins/staff/void](./@pierrelasse/plugins/staff/void.lua)
 
 // TODO
+
+### [pierrelasse/plugins/staff/xray](./@pierrelasse/plugins/staff/xray.lua)
+
+// TODO
