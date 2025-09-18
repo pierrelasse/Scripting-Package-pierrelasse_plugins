@@ -21,3 +21,8 @@ admincommandsCfg.permissionPrefix = "myserver.commands."
 admincommandsCfg.modules.remove("fly") -- disables /fly
 admincommandsCfg.modules.remove("loop") -- disables /loop
 ```
+
+#### [pierrelasse/plugins/headdb](./@pierrelasse/plugins/headdb/)
+
+WIP.
+A very lightweight version of [github/TheSilentPro/HeadDB](https://github.com/TheSilentPro/HeadDB).

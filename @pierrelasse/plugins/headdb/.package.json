@@ -1,0 +1,5 @@
+{
+	"name": "pierrelasse/plugins/headdb",
+	"load": "@pierrelasse/plugins/headdb",
+	"deps": ["bukkit/api", "pierrelasse/lib/sql"]
+}
