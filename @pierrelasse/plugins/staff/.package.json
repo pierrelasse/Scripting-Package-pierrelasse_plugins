@@ -1,0 +1,58 @@
+[
+    {
+        "name": "pierrelasse/plugins/staff/chat",
+        "load": "@pierrelasse/plugins/staff/chat",
+        "deps": [
+            "pierrelasse/lang",
+            "bukkit/api",
+            "adventure",
+            "pierrelasse/lib/nameFormatter"
+        ]
+    },
+    {
+        "name": "pierrelasse/plugins/staff/displayer",
+        "load": "@pierrelasse/plugins/staff/displayer",
+        "deps": ["pierrelasse/lang", "bukkit/api"]
+    },
+    {
+        "name": "pierrelasse/plugins/staff/helpop",
+        "load": "@pierrelasse/plugins/staff/helpop",
+        "deps": [
+            "pierrelasse/lang",
+            "bukkit/api",
+            "adventure",
+            "pierrelasse/lib/SimpleCooldowns",
+            "pierrelasse/lib/nameFormatter"
+        ]
+    },
+    {
+        "name": "pierrelasse/plugins/staff/mutechat",
+        "load": "@pierrelasse/plugins/staff/mutechat",
+        "deps": [
+            "pierrelasse/lang",
+            "bukkit/api",
+            "adventure",
+            "pierrelasse/lib/complete"
+        ]
+    },
+    {
+        "name": "pierrelasse/plugins/staff/spec",
+        "load": "@pierrelasse/plugins/staff/spec",
+        "deps": ["pierrelasse/lang", "bukkit/api"]
+    },
+    {
+        "name": "pierrelasse/plugins/staff/vanish",
+        "load": "@pierrelasse/plugins/staff/vanish",
+        "deps": ["pierrelasse/lang", "bukkit/api", "bukkit/Storage"]
+    },
+    {
+        "name": "pierrelasse/plugins/staff/void",
+        "load": "@pierrelasse/plugins/staff/void",
+        "deps": ["pierrelasse/lang", "bukkit/api", "bukkit/worldmanager"]
+    },
+    {
+        "name": "pierrelasse/plugins/staff/xray",
+        "load": "@pierrelasse/plugins/staff/xray",
+        "deps": ["pierrelasse/lang", "adventure", "bukkit/api"]
+    }
+]
