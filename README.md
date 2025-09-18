@@ -61,3 +61,11 @@ staff_chat.COMMAND = "hello"
 -- Set the send & recive permissoin.
 staff_chat.PERMISSION = "myserver.staff.chat"
 ```
+
+### [pierrelasse/plugins/staff/displayer](./@pierrelasse/plugins/staff/displayer.lua)
+
+// TODO
+
+### [pierrelasse/plugins/staff/helpop](./@pierrelasse/plugins/staff/helpop.lua)
+
+// TODO
