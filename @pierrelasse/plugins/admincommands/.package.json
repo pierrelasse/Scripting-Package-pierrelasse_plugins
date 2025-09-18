@@ -1,0 +1,9 @@
+{
+    "name": "pierrelasse/plugins/admincommands",
+    "load": "@pierrelasse/plugins/admincommands/",
+    "deps": [
+        "bukkit/api",
+        "pierrelasse/lib/simpleTargets",
+        "pierrelasse/lib/complete"
+    ]
+}
