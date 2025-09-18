@@ -1,0 +1,5 @@
+{
+    "name": "pierrelasse/plugins/itemEdit",
+    "load": "@pierrelasse/plugins/itemEdit/",
+    "deps": ["bukkit/api", "pierrelasse/lib/complete"]
+}

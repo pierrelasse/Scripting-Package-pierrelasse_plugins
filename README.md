@@ -22,7 +22,24 @@ admincommandsCfg.modules.remove("fly") -- disables /fly
 admincommandsCfg.modules.remove("loop") -- disables /loop
 ```
 
-#### [pierrelasse/plugins/headdb](./@pierrelasse/plugins/headdb/)
+### [pierrelasse/plugins/headdb](./@pierrelasse/plugins/headdb/)
 
 WIP.
 A very lightweight version of [github/TheSilentPro/HeadDB](https://github.com/TheSilentPro/HeadDB).
+
+### [pierrelasse/plugins/itemEdit](./@pierrelasse/plugins/itemEdit/)
+
+Still work in progress but usable.
+
+A very lightweight version of [github/emanondev/ItemEdit](https://github.com/emanondev/ItemEdit).
+
+Commands:
+
+-   /ie damage
+-   /ie amount
+-   /ie lore
+-   /ie rename
+-   /ie enchant
+-   /ie unbreakable
+-   /ie attribute
+-   /ie type
