@@ -43,3 +43,21 @@ Commands:
 -   /ie unbreakable
 -   /ie attribute
 -   /ie type
+
+### [pierrelasse/plugins/staff/chat](./@pierrelasse/plugins/staff/chat.lua)
+
+Chat for staff.
+
+`/staffchat <message>` to send a message to all players that have the `!.staff.chat` perrmision.
+
+Configurable using:
+
+```lua
+local staff_chat = require("@pierrelasse/plugins/staff/chat")
+
+-- Set the command to /hello instead of /staffchat, /sc.
+staff_chat.COMMAND = "hello"
+
+-- Set the send & recive permissoin.
+staff_chat.PERMISSION = "myserver.staff.chat"
+```
