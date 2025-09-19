@@ -139,3 +139,8 @@ combatListener.ON_DEATH = function(player)
     return true -- if the player should exit combat or not
 end
 ```
+
+### [pierrelasse/plugins/economy](./@pierrelasse/plugins/economy.lua)
+
+Interface for storing & managing balances.<br>
+A Vault integration might be added later.
