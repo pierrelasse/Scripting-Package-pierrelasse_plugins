@@ -58,7 +58,7 @@ local staff_chat = require("@pierrelasse/plugins/staff/chat")
 -- Set the command to /hello instead of /staffchat, /sc.
 staff_chat.COMMAND = "hello"
 
--- Set the send & recive permissoin.
+-- Set the send & recive permission.
 staff_chat.PERMISSION = "myserver.staff.chat"
 ```
 
