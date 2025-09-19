@@ -144,3 +144,10 @@ end
 
 Interface for storing & managing balances.<br>
 A Vault integration might be added later.
+
+### [pierrelasse/plugins/eval](./@pierrelasse/plugins/eval.lua)
+
+Run code ingame using `/eval <code...>`.
+
+Example: `/eval print("hello!")`<br>
+Permission: `scripting.eval`
