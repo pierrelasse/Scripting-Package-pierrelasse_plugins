@@ -208,3 +208,7 @@ homes.ALLOWED_WORLDS.add("myworld")
 -- Disallow setting homes in the nether.
 homes.ALLOWED_WORLDS.remove("world_nether")
 ```
+
+### [pierrelasse/plugins/playerDeathLightning](./@pierrelasse/plugins/playerDeathLightning.lua)
+
+Spawns an effect only (no damage or fire) lightning on player deaths.
