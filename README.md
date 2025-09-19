@@ -151,3 +151,37 @@ Run code ingame using `/eval <code...>`.
 
 Example: `/eval print("hello!")`<br>
 Permission: `scripting.eval`
+
+### [pierrelasse/plugins/headDrops](./@pierrelasse/plugins/headDrops.lua)
+
+Drop heads for mobs on death.
+
+ie. if you kill a creeper, it drops their head.
+
+Configurable using:
+
+```lua
+local headDrops = require("@pierrelasse/plugins/headDrops")
+
+-- Disable drops for allays.
+headDrops.MAP.ALLAY = nil
+
+-- Make cows drop a stone.
+headDrops.MAP.COW = { material = "STONE" }
+
+-- Make spiders drop a custom item.
+headDrops.MAP.SPIDER = function(entity)
+    return bukkit.buildItem("STICK")
+        :name("Spider Stick")
+end
+
+-- Map all drops.
+headDrops.ITEM = function(entity, drop)
+    -- 30% chance that there is no drop.
+    if random:chance(30) then
+        return nil
+    end
+
+    return drop
+end
+```
