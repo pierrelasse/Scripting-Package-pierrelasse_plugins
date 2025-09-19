@@ -185,3 +185,25 @@ headDrops.ITEM = function(entity, drop)
     return drop
 end
 ```
+
+### [pierrelasse/plugins/homes](./@pierrelasse/plugins/homes.lua)
+
+Interface for storing & managing home locations.
+
+Configurable using:
+
+```lua
+local homes = require("@pierrelasse/plugins/homes")
+
+-- Set the max homes for all players to 5.
+-- `playerId` is the uuid of the requested player as string.
+homes.GET_MAX_HOMES = function(playerId)
+    return 5
+end
+
+-- Add 'myworld' as an allowed world.
+homes.ALLOWED_WORLDS.add("myworld")
+
+-- Disallow setting homes in the nether.
+homes.ALLOWED_WORLDS.remove("world_nether")
+```
