@@ -89,3 +89,22 @@ staff_chat.PERMISSION = "myserver.staff.chat"
 ### [pierrelasse/plugins/staff/xray](./@pierrelasse/plugins/staff/xray.lua)
 
 // TODO
+
+### [pierrelasse/plugins/combat](./@pierrelasse/plugins/combat.lua)
+
+Interface for storing & managing combat timers.
+
+Configurable using:
+
+```lua
+local combat = require("@pierrelasse/plugins/combat")
+
+-- Set the default combat timer duration.
+combat.TIMER = 15 -- seconds
+
+-- Set callback to update the display.
+-- It is called atleast every second for players in combat.
+combat.DISPLAY_FUNC = function(player, timer)
+    bukkit.sendActionBar(player, "§7Combat: §c"..timer)
+end
+```
