@@ -108,3 +108,34 @@ combat.DISPLAY_FUNC = function(player, timer)
     bukkit.sendActionBar(player, "§7Combat: §c"..timer)
 end
 ```
+
+### [pierrelasse/plugins/combatListener](./@pierrelasse/plugins/combatListener.lua)
+
+Implementation that manages what happens if a player is attacked, dies, or logs out.
+
+Configurable using:
+
+```lua
+local combatListener = require("@pierrelasse/plugins/combatListener")
+
+-- Set what happens if a player logs out while in combat.
+combatListener.ON_LOGOUT = function(player)
+    player.setHealth(0) -- kills the player
+end
+
+-- If a player should get set into combat when attacked/attacking or not.
+combatListener.CAN_ENTER_COMBAT = function(victim, attacker)
+    -- victims always get put into combat
+    local canVictimEnter = true
+
+    -- attackers get put into combat if not in creative or spectator mode
+    local canAttackerEnter = not bukkit.isInCreativeOrSpec(attacker)
+
+    return canVictimEnter, canAttackerEnter
+end
+
+-- Set what happens on a player's death.
+combatListener.ON_DEATH = function(player)
+    return true -- if the player should exit combat or not
+end
+```
