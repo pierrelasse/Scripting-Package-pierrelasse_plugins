@@ -22,6 +22,12 @@ admincommandsCfg.modules.remove("fly") -- disables /fly
 admincommandsCfg.modules.remove("loop") -- disables /loop
 ```
 
+### [pierrelasse/plugins/customItems](./@pierrelasse/plugins/customItems/)
+
+WIP.
+
+Library for creating items with "abilities".
+
 ### [pierrelasse/plugins/headdb](./@pierrelasse/plugins/headdb/)
 
 WIP.
