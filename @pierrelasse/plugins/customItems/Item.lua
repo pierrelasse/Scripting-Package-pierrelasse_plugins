@@ -1,4 +1,5 @@
 local cfg = require("@pierrelasse/plugins/customItems/_cfg")
+local manager = require("@pierrelasse/plugins/customItems/manager")
 
 
 ---@class pierrelasse.plugins.customItems.Item.Ability
@@ -25,6 +26,27 @@ function this.new()
     return self
 end
 
+---@param id string
+---@param builder fun(item: pierrelasse.plugins.customItems.Item)
+function manager.make(id, builder)
+    local item = this.new()
+    item.id = id
+
+    builder(item)
+
+    local err = item:validate()
+    if err ~= nil then
+        error("could not validate item "..id..": "..err)
+    end
+
+    manager.map.put(id, item)
+end
+
+---@param itemStack bukkit.ItemStack
+function this:check(itemStack)
+    return manager.getFromItem(itemStack).id == self.id
+end
+
 function this:validate()
     if self.item == nil then
         return "missing item"
@@ -47,8 +69,6 @@ function this:buildItem()
                     lore[#lore + 1] = "§7"..line
                 end
             end
-
-            -- TODO
 
             ---@param ability pierrelasse.plugins.customItems.Item.Ability
             ---@param action string

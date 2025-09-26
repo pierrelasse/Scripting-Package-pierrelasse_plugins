@@ -1,5 +1,4 @@
 local cfg = require("@pierrelasse/plugins/customItems/_cfg")
-local Item = require("@pierrelasse/plugins/customItems/Item")
 
 
 local this = {}
@@ -19,22 +18,6 @@ function this.register(id, item)
     this.map.put(id, item)
 end
 
----@param id string
----@param builder fun(item: pierrelasse.plugins.customItems.Item)
-function this.make(id, builder)
-    local item = Item.new()
-    item.id = id
-
-    builder(item)
-
-    local err = item:validate()
-    if err ~= nil then
-        error("could not validate item "..id..": "..err)
-    end
-
-    this.map.put(id, item)
-end
-
 ---@param itemStack bukkit.ItemStack?
 function this.getFromItem(itemStack)
     if itemStack == nil or not itemStack.hasItemMeta() then return end
@@ -43,5 +26,8 @@ function this.getFromItem(itemStack)
     if id == nil then return end
     return this.get(id)
 end
+
+---@type fun(id: string, builder: fun(item: pierrelasse.plugins.customItems.Item))
+this.make = nil
 
 return this

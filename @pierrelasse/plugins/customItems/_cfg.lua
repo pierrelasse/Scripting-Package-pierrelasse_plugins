@@ -1,3 +1,8 @@
 return {
-    ITEM_ID = "customItems.item"
+    ITEM_ID = "ci",
+
+    COMMAND = {
+        name = "customitem",
+        permission = "op"
+    }
 }

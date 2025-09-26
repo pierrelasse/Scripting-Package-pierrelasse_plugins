@@ -1,9 +1,12 @@
 local complete = require("@pierrelasse/lib/complete")
+local cfg = require("@pierrelasse/plugins/customItems/_cfg")
 local manager = require("@pierrelasse/plugins/customItems/manager")
 
 
 events.onStarted(function()
-    commands.add("customitem", function(sender, args)
+    if cfg.COMMAND == nil then return end
+
+    commands.add(cfg.COMMAND.name, function(sender, args)
         ---@cast sender bukkit.entity.Player
 
         if args[1] == nil then
@@ -19,7 +22,7 @@ events.onStarted(function()
         bukkit.addItem(sender, item:buildItem():build())
         bukkit.send(sender, "§aItem given!")
     end)
-        .permission("op")
+        .permission(cfg.COMMAND.permission)
         .complete(function(completions, sender, args)
             if #args == 1 then
                 complete(completions, args[1], forEach(manager.map.keySet()))

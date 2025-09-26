@@ -1,5 +1,5 @@
 {
 	"name": "pierrelasse/plugins/customItems",
-	"load": "@pierrelasse/plugins/customItems",
-	"deps": ["bukkit/api"]
+	"load": "@pierrelasse/plugins/customItems/",
+	"deps": ["bukkit/api", "pierrelasse/lib/clickListener"]
 }
