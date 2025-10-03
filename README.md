@@ -218,3 +218,17 @@ homes.ALLOWED_WORLDS.remove("world_nether")
 ### [pierrelasse/plugins/playerDeathLightning](./@pierrelasse/plugins/playerDeathLightning.lua)
 
 Spawns an effect only (no damage or fire) lightning on player deaths.
+
+### [pierrelasse/plugins/switchAccount](./@pierrelasse/plugins/switchAccount.lua)
+
+Allows you to log in as other players.
+
+Example:
+
+1. Player1: /switchaccount Player2
+2. Player1 reconnects
+3. Player1 joins as Player2
+4. Player2 (secretly Player2) reconnects
+5. Player1 joins
+
+Useful for recording, testing, and much more!
