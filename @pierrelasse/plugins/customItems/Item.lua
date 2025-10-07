@@ -2,15 +2,24 @@ local cfg = require("@pierrelasse/plugins/customItems/_cfg")
 local manager = require("@pierrelasse/plugins/customItems/manager")
 
 
+---@param v string|adventure.text.Component
+local function cmpToStr(v)
+    if comp ~= nil and comp.is(v) then
+        ---@cast v adventure.text.Component
+        return comp.legacySerialize(v)
+    end
+    return v
+end
+
 ---@class pierrelasse.plugins.customItems.Item.Ability
 ---@field hidden? true|boolean
----@field name? string
----@field description? string
+---@field name? string|adventure.text.Component
+---@field description? string|adventure.text.Component
 ---@field activate fun(player: bukkit.entity.Player, data?: any, event?: java.Object): boolean? ---@return if it activated
 
 ---@class pierrelasse.plugins.customItems.Item
 ---@field id string
----@field description? string
+---@field description? string|adventure.text.Component
 ---@field item? bukkit.ItemBuilder
 ---
 ---@field abilityLeftClick? pierrelasse.plugins.customItems.Item.Ability
@@ -64,8 +73,7 @@ function this:buildItem()
             local lore = {}
 
             if self.description ~= nil then
-                lore[#lore + 1] = ""
-                for line in forEach(self.description:split("\n")) do
+                for line in forEach(cmpToStr(self.description):split("\n")) do
                     lore[#lore + 1] = "§7"..line
                 end
             end
@@ -80,10 +88,10 @@ function this:buildItem()
                 if ability.name == nil then
                     lore[#lore + 1] = "§#15a3d7§l"..action
                 else
-                    lore[#lore + 1] = "§#7ff1f1§n"..ability.name.."§#15a3d7 §l"..action
+                    lore[#lore + 1] = "§#7ff1f1§n"..cmpToStr(ability.name).."§#15a3d7 §l"..action
                 end
                 if ability.description ~= nil then
-                    for line in forEach(ability.description:split("\n")) do
+                    for line in forEach(cmpToStr(ability.description):split("\n")) do
                         lore[#lore + 1] = "§7"..line
                     end
                 end
