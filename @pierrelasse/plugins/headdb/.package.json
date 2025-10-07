@@ -1,5 +1,6 @@
 {
 	"name": "pierrelasse/plugins/headdb",
-	"load": "@pierrelasse/plugins/headdb",
-	"deps": ["bukkit/api", "pierrelasse/lib/sql"]
+	"load": "@pierrelasse/plugins/headdb/",
+	"deps": ["pierrelasse/lib/sql", "bukkit/api", "bukkit/guimaker"],
+	"include": ["data.db"]
 }

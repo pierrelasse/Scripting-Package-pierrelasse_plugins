@@ -12,6 +12,11 @@ local db = sql.connect("jdbc:sqlite:"..DB_FILE)
 ---@field tags string
 ---@field collections string
 
+local this = {
+    COMMAND = "heads",
+    PERMISSION = "headdb"
+}
+
 ---@param query string
 ---@return pierrelasse.plugins.headdb.Entry[]
 local function search(query)
@@ -22,7 +27,7 @@ local function search(query)
 
     if query:match("^#%d+$") then
         rs = db.query("SELECT id, name, texture, category, tags, collections FROM heads WHERE id = ?",
-                      { tonumber(query:sub(2)) })
+            { tonumber(query:sub(2)) })
     elseif query:sub(1, 1) == "@" then
         local tag = query:sub(2):lower()
         rs = db.query(
@@ -149,7 +154,7 @@ local function open(player, query, results)
 end
 
 events.onStarted(function()
-    commands.add("heads", function(sender, args)
+    commands.add(this.COMMAND, function(sender, args)
         ---@cast sender bukkit.entity.Player
 
         if #args == 0 then
@@ -174,6 +179,7 @@ events.onStarted(function()
 
         open(sender, query, results)
     end)
+        .permission(this.PERMISSION)
         .complete(function(completions, sender, args)
             if #args == 1 then
                 if #args[1] == 0 then
@@ -187,3 +193,5 @@ events.onStarted(function()
             end
         end)
 end)
+
+return this
