@@ -14,9 +14,9 @@ local MAP = {
 local function sendSuccessMessage(sender, target, gamemode)
     local stringifiedGameMode = MAP[gamemode][1]
     if target == sender then
-        bukkit.send(sender, "§7Set own gamemode to §e"..stringifiedGameMode)
+        bukkit.send(sender, "§7Set own game mode to §e"..stringifiedGameMode)
     else
-        bukkit.send(sender, "§7Set §e"..target.getName().."'s§7 gamemode to §e"..stringifiedGameMode)
+        bukkit.send(sender, "§7Set §e"..target.getName().."'s§7 game mode to §e"..stringifiedGameMode)
     end
 end
 
