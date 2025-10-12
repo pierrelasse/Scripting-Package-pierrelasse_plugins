@@ -17,20 +17,20 @@ Lang.get("en"):put({
 })
 
 local this = {
-    PREFIX = comp.from("§3[§bS HelpOP§3] "),
-
     PERMISSION = "!.staff.helpop",
 
     COMMAND = "helpop",
     COOLDOWN = 10
 }
 
+this.log = require("@pierrelasse/plugins/staff/log"):sub("helpop", "HelpOP", function(player)
+    return player.hasPermission(this.PERMISSION)
+end)
+
 this.cooldowns = SimpleCooldowns.new()
 
 events.onStarted(function()
-    commands.add(this.COMMAND, function(sender, args)
-        ---@cast sender bukkit.entity.Player
-
+    commands.add(this.COMMAND, function(sender, args) ---@cast sender bukkit.entity.Player
         local message = table.concat(args, " "):trim()
         if #message == 0 then
             Lang.send(sender, "pierrelasse/plugins/staff/helpop/needMessage")
@@ -42,18 +42,13 @@ events.onStarted(function()
             return
         end
 
-        Lang.sendMult(
-            function(l)
-                return comp.empty()
-                    .append(this.PREFIX)
-                    .append(comp.from(nameFormatter.prefixName(sender)))
-                    .append(comp.text(":").color(comp.colorN("GRAY")))
-                    .appendSpace()
-                    .append(comp.text(message).color(comp.colorHex("#eff5ff")))
-            end,
-            bukkit.playersLoop(), function(p)
-                return p.hasPermission(this.PERMISSION)
-            end)
+        this.log:log(function(l)
+            return comp.empty()
+                .append(comp.from(nameFormatter.prefixName(sender)))
+                .append(comp.text(":").color(comp.colorN("GRAY")))
+                .appendSpace()
+                .append(comp.text(message).color(comp.colorHex("#eff5ff")))
+        end)
 
         Lang.send(sender, "pierrelasse/plugins/staff/helpop/sent")
     end)
