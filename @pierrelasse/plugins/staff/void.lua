@@ -2,8 +2,6 @@ local PlayerQuitEvent = import("org.bukkit.event.player.PlayerQuitEvent")
 local BlockPlaceEvent = import("org.bukkit.event.block.BlockPlaceEvent")
 local BlockBreakEvent = import("org.bukkit.event.block.BlockBreakEvent")
 
-local worldmanager = require("@bukkit/worldmanager/worldmanager")
-
 
 Lang.get("en"):put({
     pierrelasse = {
@@ -25,7 +23,12 @@ Lang.get("en"):put({
 })
 
 local this = {
+    WORLD_NAME = "void",
+
     PERMISSION = "!.staff.void",
+
+    COMMAND = "void",
+
     ALLOW_BLOCK_MODIFICATION = false
 }
 
@@ -37,16 +40,16 @@ this.fallbackLocation = nil
 
 ---uuid -> location
 ---@type java.Map<string, bukkit.Location>
-this.locations = makeMap()
+this.locations = java.map()
 
 events.onStarted(function()
-    this.world = bukkit.world("void")
+    this.world = bukkit.world(this.WORLD_NAME)
 
-    commands.add("void", function(sender, args)
+    commands.add(this.COMMAND, function(sender, args)
         if this.world == nil then
             Lang.send(sender, "pierrelasse/plugins/staff/void/world/load")
 
-            local creator = worldmanager.create("void")
+            local creator = bukkit.worldManager.create(this.WORLD_NAME)
             creator:setupVoid()
             local world = creator:create()
             if world == nil then
