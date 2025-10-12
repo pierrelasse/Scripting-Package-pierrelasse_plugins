@@ -20,10 +20,11 @@ Lang.get("en"):put({
 })
 
 local this = {
-    HIGHEST_LEVEL = 9,
-    UPDATE_INTERVAL = 20 * 10,
     PERMISSION = "!.staff.vanish",
-    COMMAND = { "vanish", "v" }
+    COMMAND = { "vanish", "v" },
+
+    HIGHEST_LEVEL = 9,
+    FORCE_UPDATE_INTERVAL = 10
 }
 
 this.storage = bukkit.Storage.new("pierrelasse", "vanish")
@@ -46,7 +47,6 @@ function this.isActive(playerId)
 end
 
 ---@deprecated
----@param player bukkit.entity.Player
 function this.getLVL(player)
     scripting.warningDeprecated("pierrelasse/plugins/staff/vanish#getLVL")
     return this.getLevel(bukkit.uuid(player))
@@ -66,7 +66,6 @@ end
 ---@package
 ---@param highestLevel integer
 ---@param level? number
----@return boolean
 function this.canSee(highestLevel, level)
     return level == nil or highestLevel >= level
 end
@@ -103,9 +102,7 @@ events.onStarted(function()
             this.updateSee(player, highestLevel, p, this.getLevel(bukkit.uuid(p)))
         end
 
-        tasks.wait(1, function()
-            this.updateSees(player)
-        end)
+        tasks.wait(1, function() this.updateSees(player) end)
     end)
 
     commands.add(this.COMMAND, function(sender, args)
@@ -159,7 +156,7 @@ events.onStarted(function()
     end)
         .permission(this.PERMISSION)
 
-    tasks.every(this.UPDATE_INTERVAL, function()
+    tasks.every(20 * this.FORCE_UPDATE_INTERVAL, function()
         for p in bukkit.playersLoop() do
             local pId = bukkit.uuid(p)
 
@@ -169,12 +166,6 @@ events.onStarted(function()
                 this.setLevel(pId, highest)
             end
 
-            this.updateSees(p)
-        end
-    end)
-
-    tasks.wait(0, function()
-        for p in bukkit.playersLoop() do
             this.updateSees(p)
         end
     end)
