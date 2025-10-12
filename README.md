@@ -77,6 +77,10 @@ staff_chat.PERMISSION = "myserver.staff.chat"
 
 // TODO
 
+### [pierrelasse/plugins/staff/log](./@pierrelasse/plugins/staff/log.lua)
+
+Interface for messaging staff.
+
 ### [pierrelasse/plugins/staff/mutechat](./@pierrelasse/plugins/staff/mutechat.lua)
 
 // TODO
