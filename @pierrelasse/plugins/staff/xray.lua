@@ -19,7 +19,7 @@ Lang.get("en"):put({
 local this = {
     PERMISSION = "!.staff.xray",
 
-    MONITORED_BLOCKS = {
+    MONITORED_BLOCKS = java.setOf(
         "DIAMOND_ORE",
         "DEEPSLATE_DIAMOND_ORE",
 
@@ -30,10 +30,17 @@ local this = {
 
         "GOLD_ORE",
         "DEEPSLATE_GOLD_ORE"
-    }
+    ),
+
+    --- seconds
+    CLEAR_INTERVAL = 60
 }
 
-this.processedBlocks = makeMap()
+this.log = require("@pierrelasse/plugins/staff/log"):sub("xray", "X-Ray", function(player)
+    return player.hasPermission(this.PERMISSION)
+end)
+
+this.processedBlocks = java.map()
 
 local function getAdjacentBlocks(block)
     return arrayOf(
@@ -46,13 +53,12 @@ local function getAdjacentBlocks(block)
     )
 end
 
----@param startBlock java.Object
----@param material java.Object
+---@param startBlock bukkit.block.Block
+---@param material bukkit.Material
 local function findVein(startBlock, material)
-    ---@type java.Set<bukkit.block.Block>
-    local vein = makeSet()
+    local vein = java.set() ---@type java.Set<bukkit.block.Block>
 
-    local toCheck = ArrayDeque(7)
+    local toCheck = ArrayDeque(7) ---@type java.Collection<bukkit.block.Block>
     toCheck.add(startBlock)
     while not toCheck.isEmpty() do
         local block = toCheck.poll()
@@ -75,44 +81,42 @@ end
 ---@param amount integer
 ---@param material bukkit.Material
 function this.notify(player, block, amount, material)
-    local prefix = comp.from("§3[§bS§3] ")
-    Lang.sendMult(
-        function(l)
-            local hover = l:tc("pierrelasse/plugins/staff/spec/clickToSpectate")
-            local clickEvent = comp.clickEvent("RUN_COMMAND", "/spec "..player.getName())
-            return comp.empty()
-                .append(prefix)
-                .append(
-                    l:tcf("pierrelasse/plugins/staff/xray/notify_name", player.getName())
-                    .clickEvent(clickEvent)
-                    .hoverEvent(comp.hoverEvent("SHOW_TEXT", hover))
-                )
-                .append(
-                    l:tcf("pierrelasse/plugins/staff/xray/notify_found", amount, material.name():lower())
-                    .clickEvent(clickEvent)
-                    .hoverEvent(comp.hoverEvent(
-                        "SHOW_TEXT",
-                        comp.from("§7"..block.getWorld().getName()..
-                            ", "..block.getX()..","..block.getY()..","..block.getZ()
-                            .."\n\n")
-                        .append(hover)
-                    ))
-                )
-        end,
-        bukkit.playersLoop(),
-        function(p) return p.hasPermission(this.PERMISSION) end
-    )
+    local playerName = player.getName()
+
+    local clickEvent = comp.clickEvent("RUN_COMMAND", "/spec "..playerName)
+
+    this.log:log(function(l)
+        local hover = l:tc("pierrelasse/plugins/staff/spec/clickToSpectate")
+
+        return comp.empty()
+            .append(
+                l:tcf("pierrelasse/plugins/staff/xray/notify_name", playerName)
+                .clickEvent(clickEvent)
+                .hoverEvent(comp.hoverEvent("SHOW_TEXT", hover))
+            )
+            .append(
+                l:tcf("pierrelasse/plugins/staff/xray/notify_found", amount, material.name():lower())
+                .clickEvent(clickEvent)
+                .hoverEvent(comp.hoverEvent(
+                    "SHOW_TEXT",
+                    comp.from("§7"..block.getWorld().getName()..
+                        ", "..block.getX()..","..block.getY()..","..block.getZ()
+                        .."\n\n")
+                    .append(hover)
+                ))
+            )
+    end)
 end
 
 events.onStarted(function()
-    tasks.every(20 * 60, function() this.processedBlocks.clear() end)
+    tasks.every(20 * this.CLEAR_INTERVAL, function() this.processedBlocks.clear() end)
 
     events.listen(BlockBreakEvent, function(event)
-        local block = event.getBlock()
+        local block = event.getBlock() ---@type bukkit.block.Block
         local blockMaterial = block.getType()
-        if table.key(this.MONITORED_BLOCKS, blockMaterial.name()) == nil then return end
+        if not this.MONITORED_BLOCKS.contains(blockMaterial.name()) then return end
 
-        local player = event.getPlayer()
+        local player = event.getPlayer() ---@type bukkit.entity.Player
         if bukkit.isInCreativeOrSpec(player) then return end
 
         if this.processedBlocks.containsKey(block) then return end
