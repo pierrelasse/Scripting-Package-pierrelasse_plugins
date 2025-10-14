@@ -183,6 +183,19 @@ paman.needAndApply("pierrelasse/plugins/commands/hp", function(p)
 end)
 ```
 
+### [pierrelasse/plugins/commands/invsee](./@pierrelasse/plugins/commands/invsee.lua)
+
+Open a player's inventory using `/invsee <target: player>`.
+
+Configurable using:
+
+```lua
+paman.needAndApply("pierrelasse/plugins/commands/invsee", function(p)
+    p.COMMAND = "invsee"
+    p.PERMISSION = "commands.invsee"
+end)
+```
+
 ### [pierrelasse/plugins/commands/invulnerable](./@pierrelasse/plugins/commands/invulnerable.lua)
 
 Set a player's invulnerable state using `/invulnerable <target: player> [<state: boolean>]`.<br>
