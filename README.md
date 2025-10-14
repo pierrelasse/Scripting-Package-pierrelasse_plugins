@@ -48,6 +48,19 @@ paman.needAndApply("pierrelasse/plugins/commands/bring", function(p)
 end)
 ```
 
+### [pierrelasse/plugins/commands/craft](./@pierrelasse/plugins/commands/craft.lua)
+
+A simple `/craft` command.
+
+Configurable using:
+
+```lua
+paman.needAndApply("pierrelasse/plugins/commands/craft", function(p)
+    p.COMMAND = "craft"
+    p.PERMISSION = "commands.craft"
+end)
+```
+
 ### [pierrelasse/plugins/customItems](./@pierrelasse/plugins/customItems/)
 
 WIP.

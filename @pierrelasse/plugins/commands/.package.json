@@ -8,5 +8,10 @@
 		"name": "pierrelasse/commands/bring",
 		"load": "@pierrelasse/commands/bring",
 		"deps": ["pierrelasse/lang", "bukkit/api", "pierrelasse/lib/simpleTargets"]
+	},
+	{
+		"name": "pierrelasse/commands/craft",
+		"load": "@pierrelasse/commands/craft",
+		"deps": ["bukkit/api"]
 	}
 ]
