@@ -10,6 +10,11 @@
 		"deps": ["pierrelasse/lang", "bukkit/api", "pierrelasse/lib/simpleTargets"]
 	},
 	{
+		"name": "pierrelasse/commands/copyinventory",
+		"load": "@pierrelasse/commands/copyinventory",
+		"deps": ["pierrelasse/lang", "bukkit/api", "pierrelasse/lib/simpleTargets"]
+	},
+	{
 		"name": "pierrelasse/commands/craft",
 		"load": "@pierrelasse/commands/craft",
 		"deps": ["bukkit/api"]

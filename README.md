@@ -48,6 +48,19 @@ paman.needAndApply("pierrelasse/plugins/commands/bring", function(p)
 end)
 ```
 
+### [pierrelasse/plugins/commands/copyinventory](./@pierrelasse/plugins/commands/copyinventory.lua)
+
+Copy a player's inventory to another player using `/copyinventory <destination: player> [<source: player>]`.
+
+Configurable using:
+
+```lua
+paman.needAndApply("pierrelasse/plugins/commands/copyinventory", function(p)
+    p.COMMAND = "copyinventory"
+    p.PERMISSION = "commands.copyinventory"
+end)
+```
+
 ### [pierrelasse/plugins/commands/craft](./@pierrelasse/plugins/commands/craft.lua)
 
 A simple `/craft` command.
