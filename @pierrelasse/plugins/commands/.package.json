@@ -53,5 +53,10 @@
 		"name": "pierrelasse/commands/invulnerable",
 		"load": "@pierrelasse/commands/invulnerable",
 		"deps": ["pierrelasse/lang", "bukkit/api", "pierrelasse/lib/simpleTargets"]
+	},
+	{
+		"name": "pierrelasse/commands/respawn",
+		"load": "@pierrelasse/commands/respawn",
+		"deps": ["pierrelasse/lang", "bukkit/api", "pierrelasse/lib/simpleTargets"]
 	}
 ]

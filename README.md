@@ -145,6 +145,19 @@ paman.needAndApply("pierrelasse/plugins/commands/invulnerable", function(p)
 end)
 ```
 
+### [pierrelasse/plugins/commands/respawn](./@pierrelasse/plugins/commands/respawn.lua)
+
+Respawn a dead player using `/respawn <target: player>`.<br>
+
+Configurable using:
+
+```lua
+paman.needAndApply("pierrelasse/plugins/commands/respawn", function(p)
+    p.COMMAND = "respawn"
+    p.PERMISSION = "commands.respawn"
+end)
+```
+
 ### [pierrelasse/plugins/customItems](./@pierrelasse/plugins/customItems/)
 
 WIP.
