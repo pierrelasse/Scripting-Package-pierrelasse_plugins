@@ -41,10 +41,12 @@ events.onStarted(function()
 
         target.setHealth(newHealth)
 
-        logDark:log(function(l)
-            return l:tcf("pierrelasse/plugins/commands/heal/healedLog",
-                sender.getName(), target.getName(), newHealth - oldHealth)
-        end, sender)
+        if target ~= sender then
+            logDark:log(function(l)
+                return l:tcf("pierrelasse/plugins/commands/heal/healedLog",
+                    sender.getName(), target.getName(), newHealth - oldHealth)
+            end, sender)
+        end
         Lang.sendF(sender, "pierrelasse/plugins/commands/heal/healed",
             target.getName(), newHealth - oldHealth)
     end)
