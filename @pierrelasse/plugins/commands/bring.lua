@@ -43,6 +43,7 @@ events.onStarted(function()
             return
         end
 
+        target.setFallDistance(0)
         bukkit.teleport(target, sender.getLocation())
 
         Lang.sendF(sender, "pierrelasse/plugins/commands/bring/teleported",
