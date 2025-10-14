@@ -1,3 +1,4 @@
+local complete = require("@pierrelasse/lib/complete")
 local simpleTargets = require("@pierrelasse/lib/simpleTargets")
 
 
@@ -59,6 +60,11 @@ events.onStarted(function()
         .complete(function(completions, sender, args)
             if #args == 1 then
                 simpleTargets.complete(sender, completions, args[1])
+            elseif #args == 2 then
+                local target = simpleTargets.find(sender, args[1])
+                local maxHealth = target and target.getMaxHealth() or 20
+
+                complete(completions, args[2], { "0", maxHealth * .5, maxHealth })
             end
         end)
 end)
