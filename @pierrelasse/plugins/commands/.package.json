@@ -43,5 +43,10 @@
 			"pierrelasse/lib/simpleTargets",
 			"pierrelasse/plugins/commands/feed"
 		]
+	},
+	{
+		"name": "pierrelasse/commands/hp",
+		"load": "@pierrelasse/commands/hp",
+		"deps": ["pierrelasse/lang", "bukkit/api", "pierrelasse/lib/simpleTargets"]
 	}
 ]

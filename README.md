@@ -117,6 +117,20 @@ paman.needAndApply("pierrelasse/plugins/commands/heal", function(p)
 end)
 ```
 
+### [pierrelasse/plugins/commands/hp](./@pierrelasse/plugins/commands/hp.lua)
+
+Set a player's health using `/hp <target: player> <amount: number>`.<br>
+Example: `/hp player1 10` - Sets the health of player1 to 5 hearts.
+
+Configurable using:
+
+```lua
+paman.needAndApply("pierrelasse/plugins/commands/hp", function(p)
+    p.COMMAND = "hp"
+    p.PERMISSION = "commands.hp"
+end)
+```
+
 ### [pierrelasse/plugins/customItems](./@pierrelasse/plugins/customItems/)
 
 WIP.
