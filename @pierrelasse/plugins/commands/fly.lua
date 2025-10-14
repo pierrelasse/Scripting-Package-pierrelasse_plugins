@@ -8,7 +8,9 @@ Lang.get("en"):put({
             commands = {
                 fly = {
                     enable = "{0} can now fly",
-                    disable = "{0} can no longer fly"
+                    enableLog = "{0} enabled {1}'s fly",  -- TODO
+                    disable = "{0} can no longer fly",
+                    disableLog = "{0} disabled {1}'s fly" -- TODO
                 }
             }
         }
@@ -32,6 +34,8 @@ local this = {
     COMMAND = "fly",
     PERMISSION = "commands.fly"
 }
+
+local logDark = require("@pierrelasse/plugins/staff/log").dark:sub("commands/fly")
 
 events.onStarted(function()
     commands.add(this.COMMAND, function(sender, args)
@@ -59,6 +63,12 @@ events.onStarted(function()
         target.setAllowFlight(newState)
         if newState and not target.isOnGround() then target.setFlying(newState) end
 
+        if target ~= sender then
+            logDark:log(function(l)
+                return l:tcf("pierrelasse/plugins/commands/fly/"..(newState and "enable" or "disable").."Log",
+                    sender.getName(), target.getName())
+            end, sender)
+        end
         Lang.sendF(sender, "pierrelasse/plugins/commands/fly/"..(newState and "enable" or "disable"),
             target.getName())
     end)
