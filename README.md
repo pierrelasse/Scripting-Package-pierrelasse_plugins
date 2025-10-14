@@ -74,6 +74,19 @@ paman.needAndApply("pierrelasse/plugins/commands/craft", function(p)
 end)
 ```
 
+### [pierrelasse/plugins/commands/doas](./@pierrelasse/plugins/commands/doas.lua)
+
+Chat or run a command as a different player using `/sudo <target: player> <message: string...>`.
+
+Configurable using:
+
+```lua
+paman.needAndApply("pierrelasse/plugins/commands/doas", function(p)
+    p.COMMAND = "sudo"
+    p.PERMISSION = "commands.doas"
+end)
+```
+
 ### [pierrelasse/plugins/commands/feed](./@pierrelasse/plugins/commands/feed.lua)
 
 Restore a player's food bar using `/feed <target: player>`.

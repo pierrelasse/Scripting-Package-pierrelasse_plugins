@@ -20,6 +20,11 @@
 		"deps": ["bukkit/api"]
 	},
 	{
+		"name": "pierrelasse/commands/doas",
+		"load": "@pierrelasse/commands/doas",
+		"deps": ["pierrelasse/lang", "bukkit/api"]
+	},
+	{
 		"name": "pierrelasse/commands/feed",
 		"load": "@pierrelasse/commands/feed",
 		"deps": ["pierrelasse/lang", "bukkit/api", "pierrelasse/lib/simpleTargets"]
