@@ -6,7 +6,8 @@ Lang.get("en"):put({
         plugins = {
             commands = {
                 doas = {
-                    did = "Sudoded {0}: {1}"
+                    did = "Sudoded {0}: {1}",
+                    didLog = "{0} sudoded {1}: {2}"
                 }
             }
         }
@@ -18,6 +19,8 @@ local this = {
     PERMISSION = "commands.doas"
 }
 
+local logDark = require("@pierrelasse/plugins/staff/log").dark:sub("commands/doas")
+
 events.onStarted(function()
     commands.add(this.COMMAND, function(sender, args)
         local target = simpleTargets.find(sender, args[1])
@@ -26,12 +29,16 @@ events.onStarted(function()
             return
         end
 
-        local v = table.concat(args, " ", 2)
+        local message = table.concat(args, " ", 2)
 
-        target.chat(v)
+        target.chat(message)
 
+        logDark:log(function(l)
+            return l:tcf("pierrelasse/plugins/commands/doas/didLog",
+                sender.getName(), target.getName(), message)
+        end, sender)
         Lang.sendF(sender, "pierrelasse/plugins/commands/doas/did",
-            target.getName(), v)
+            target.getName(), message)
     end)
         .permission(this.PERMISSION)
         .complete(function(completions, sender, args)
