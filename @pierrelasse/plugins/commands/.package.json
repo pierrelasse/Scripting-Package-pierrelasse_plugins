@@ -33,5 +33,15 @@
 		"name": "pierrelasse/commands/goto",
 		"load": "@pierrelasse/commands/goto",
 		"deps": ["pierrelasse/lang", "bukkit/api", "pierrelasse/lib/simpleTargets"]
+	},
+	{
+		"name": "pierrelasse/commands/heal",
+		"load": "@pierrelasse/commands/heal",
+		"deps": [
+			"pierrelasse/lang",
+			"bukkit/api",
+			"pierrelasse/lib/simpleTargets",
+			"pierrelasse/plugins/commands/feed"
+		]
 	}
 ]

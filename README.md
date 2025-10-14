@@ -102,6 +102,21 @@ paman.needAndApply("pierrelasse/plugins/commands/goto", function(p)
 end)
 ```
 
+### [pierrelasse/plugins/commands/heal](./@pierrelasse/plugins/commands/heal.lua)
+
+Restore a player's health & food bar using `/heal <target: player>`.<br>
+Uses `pierrelasse/plugins/commands/feed` to restore the food bar.
+
+Configurable using:
+
+```lua
+paman.needAndApply("pierrelasse/plugins/commands/heal", function(p)
+    p.COMMAND = "heal"
+    p.PERMISSION = "commands.heal"
+    p.FEED = true
+end)
+```
+
 ### [pierrelasse/plugins/customItems](./@pierrelasse/plugins/customItems/)
 
 WIP.
