@@ -1,0 +1,7 @@
+[
+	{
+		"name": "pierrelasse/commands/anvil",
+		"load": "@pierrelasse/commands/anvil",
+		"deps": ["bukkit/api"]
+	}
+]
