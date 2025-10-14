@@ -6,7 +6,8 @@ Lang.get("en"):put({
         plugins = {
             commands = {
                 ["bring"] = {
-                    teleported = "Teleported {0} to you"
+                    teleported = "Teleported {0} to you",
+                    teleportedLog = "{0} ⬅ {1}"
                 }
             }
         }
@@ -30,6 +31,8 @@ local this = {
     PERMISSION = "commands.bring"
 }
 
+local logDark = require("@pierrelasse/plugins/staff/log").dark:sub("tp", "TP")
+
 events.onStarted(function()
     commands.add(this.COMMAND, function(sender, args) ---@cast sender bukkit.entity.Player
         if args[1] == nil then
@@ -38,7 +41,7 @@ events.onStarted(function()
         end
 
         local target = simpleTargets.find(sender, args[1])
-        if target == nil then
+        if target == nil or target == sender then
             bukkit.send(sender, "§cTarget not found!") -- TODO
             return
         end
@@ -46,6 +49,10 @@ events.onStarted(function()
         target.setFallDistance(0)
         bukkit.teleport(target, sender.getLocation())
 
+        logDark:log(function(l)
+            return l:tcf("pierrelasse/plugins/commands/bring/teleportedLog",
+                sender.getName(), target.getName())
+        end, sender)
         Lang.sendF(sender, "pierrelasse/plugins/commands/bring/teleported",
             target.getName())
     end)
