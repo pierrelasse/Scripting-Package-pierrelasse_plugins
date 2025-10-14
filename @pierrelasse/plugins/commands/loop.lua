@@ -3,7 +3,8 @@ Lang.get("en"):put({
         plugins = {
             commands = {
                 loop = {
-                    doing = "Looping x{0} ⏱{1}: {2}"
+                    doing = "Looping x{0} ⏱{1}: {2}",
+                    doingLog = "{0} looping x{1} ⏱{2}: {3}"
                 }
             }
         }
@@ -27,6 +28,8 @@ local this = {
     PERMISSION = "commands.loop"
 }
 
+local logDark = require("@pierrelasse/plugins/staff/log").dark:sub("commands/loop")
+
 events.onStarted(function()
     commands.add(this.COMMAND, function(sender, args) ---@cast sender bukkit.entity.Player
         if #args < 3 then
@@ -49,6 +52,10 @@ events.onStarted(function()
                 sender.chat(message)
             end)
 
+        logDark:log(function(l)
+            return l:tcf("pierrelasse/plugins/commands/loop/doingLog",
+                sender.getName(), amount, delay, message)
+        end, sender)
         Lang.sendF(sender, "pierrelasse/plugins/commands/loop/doing",
             amount, delay, message)
     end)
