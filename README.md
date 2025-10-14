@@ -74,6 +74,21 @@ paman.needAndApply("pierrelasse/plugins/commands/feed", function(p)
 end)
 ```
 
+### [pierrelasse/plugins/commands/gamemode](./@pierrelasse/plugins/commands/gamemode.lua)
+
+Adds `/gm <gameMode> [<target: player>]` and `/gm<gameMode> [<target: player>]`.
+
+Configurable using:
+
+```lua
+paman.needAndApply("pierrelasse/plugins/commands/gamemode", function(p)
+    p.PERMISSION = "commands.gm"
+
+    -- Remove `/gms` & `/gm survival`.
+    p.MAP[bukkit.gameMode("SURVIVAL")] = nil
+end)
+```
+
 ### [pierrelasse/plugins/customItems](./@pierrelasse/plugins/customItems/)
 
 WIP.

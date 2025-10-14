@@ -18,5 +18,15 @@
 		"name": "pierrelasse/commands/feed",
 		"load": "@pierrelasse/commands/feed",
 		"deps": ["pierrelasse/lang", "bukkit/api", "pierrelasse/lib/simpleTargets"]
+	},
+	{
+		"name": "pierrelasse/commands/gamemode",
+		"load": "@pierrelasse/commands/gamemode",
+		"deps": [
+			"pierrelasse/lang",
+			"bukkit/api",
+			"pierrelasse/lib/complete",
+			"pierrelasse/lib/simpleTargets"
+		]
 	}
 ]
