@@ -113,6 +113,19 @@ paman.needAndApply("pierrelasse/plugins/commands/feed", function(p)
 end)
 ```
 
+### [pierrelasse/plugins/commands/fly](./@pierrelasse/plugins/commands/fly.lua)
+
+Enable or disable fly for a player using `/fly <target: player> [<state: boolean>]`.
+
+Configurable using:
+
+```lua
+paman.needAndApply("pierrelasse/plugins/commands/fly", function(p)
+    p.COMMAND = "fly"
+    p.PERMISSION = "commands.fly"
+end)
+```
+
 ### [pierrelasse/plugins/commands/gamemode](./@pierrelasse/plugins/commands/gamemode.lua)
 
 Adds `/gm <gameMode> [<target: player>]` and `/gm<gameMode> [<target: player>]`.
