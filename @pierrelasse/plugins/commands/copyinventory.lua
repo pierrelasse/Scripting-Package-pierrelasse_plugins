@@ -7,7 +7,8 @@ Lang.get("en"):put({
             commands = {
                 copyinventory = {
                     invalidDestination = comp.mm("<red>Invalid destination!"),
-                    copied = "Copied inventory from {0} to {1}!"
+                    copied = "Copied inventory from {0} to {1}!",
+                    copiedLog = "{0} copied the inventory from {1} ➡ {2}"
                 }
             }
         }
@@ -32,6 +33,8 @@ local this = {
     PERMISSION = "commands.copyinventory"
 }
 
+local logDark = require("@pierrelasse/plugins/staff/log").dark:sub("commands/copyinventory")
+
 events.onStarted(function()
     commands.add(this.COMMAND, function(sender, args)
         if #args == 0 then
@@ -48,8 +51,14 @@ events.onStarted(function()
         local source = simpleTargets.find(sender, args[2], sender)
         if source == nil then return end
 
+        if destination == source then return end
+
         destination.getInventory().setContents(source.getInventory().getContents())
 
+        logDark:log(function(l)
+            return l:tcf("pierrelasse/plugins/commands/copyinventory/copiedLog",
+                sender.getName(), source.getName(), destination.getName())
+        end, sender)
         Lang.sendF(sender, "pierrelasse/plugins/commands/copyinventory/copied",
             source.getName(), destination.getName())
     end)
