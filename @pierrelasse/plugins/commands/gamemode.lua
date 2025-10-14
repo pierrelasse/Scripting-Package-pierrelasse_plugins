@@ -9,6 +9,7 @@ Lang.get("en"):put({
                 gamemode = {
                     invalid = comp.mm("<red>Invalid game mode!"),
                     set = "Set {0}'s game mode to {1}",
+                    setLog = "{0} set {1}'s game mode to {2}",
                     setOwn = "Set own game mode to {1}",
                     mode = {
                         SURVIVAL = "Survival",
@@ -28,8 +29,8 @@ Lang.get("de"):put({
             commands = {
                 gamemode = {
                     invalid = comp.mm("<red>Ungültiger Game-Mode!"),
-                    set = "Den Game-Mode von {0} auf {1} gesetzt",
-                    setOwn = "Eigenen Game-Mode auf {1} gesetzt",
+                    set = "Game-Mode von {0} auf {1} gesetzt",
+                    setOwn = "Game-Mode auf {1} gesetzt",
                     mode = {
                         SURVIVAL = "Survival",
                         CREATIVE = "Creative",
@@ -52,6 +53,8 @@ local this = {
         [bukkit.gameMode("SPECTATOR")] = { "spectator", "sp", "3" },
     }
 }
+
+local logDark = require("@pierrelasse/plugins/staff/log").dark:sub("commands/gamemode")
 
 ---@param str string
 function this.gameModeFromString(str)
@@ -77,6 +80,10 @@ function this.set(sender, target, gameMode)
         Lang.sendF(sender, "pierrelasse/plugins/commands/gamemode/setOwn",
             stringifiedGameMode)
     else
+        logDark:log(function(l)
+            return l:tcf("pierrelasse/plugins/commands/gamemode/setLog",
+                sender.getName(), target.getName(), stringifiedGameMode)
+        end, sender)
         Lang.sendF(sender, "pierrelasse/plugins/commands/gamemode/set",
             target.getName(), stringifiedGameMode)
     end
