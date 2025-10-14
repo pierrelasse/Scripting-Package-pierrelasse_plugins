@@ -89,6 +89,19 @@ paman.needAndApply("pierrelasse/plugins/commands/gamemode", function(p)
 end)
 ```
 
+### [pierrelasse/plugins/commands/goto](./@pierrelasse/plugins/commands/goto.lua)
+
+Teleport you to a player using `/goto <target: player>`.
+
+Configurable using:
+
+```lua
+paman.needAndApply("pierrelasse/plugins/commands/goto", function(p)
+    p.COMMAND = "goto"
+    p.PERMISSION = "commands.goto"
+end)
+```
+
 ### [pierrelasse/plugins/customItems](./@pierrelasse/plugins/customItems/)
 
 WIP.
