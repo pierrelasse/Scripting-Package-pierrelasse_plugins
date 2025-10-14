@@ -210,6 +210,19 @@ paman.needAndApply("pierrelasse/plugins/commands/invulnerable", function(p)
 end)
 ```
 
+### [pierrelasse/plugins/commands/loop](./@pierrelasse/plugins/commands/loop.lua)
+
+Loop a command or a chat message using `/loop <delay: integer> <amount: integer> <message: string...>`.
+
+Configurable using:
+
+```lua
+paman.needAndApply("pierrelasse/plugins/commands/loop", function(p)
+    p.COMMAND = "loop"
+    p.PERMISSION = "commands.loop"
+end)
+```
+
 ### [pierrelasse/plugins/commands/respawn](./@pierrelasse/plugins/commands/respawn.lua)
 
 Respawn a dead player using `/respawn <target: player>`.<br>

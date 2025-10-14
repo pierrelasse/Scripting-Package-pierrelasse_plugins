@@ -85,6 +85,11 @@
 		"deps": ["pierrelasse/lang", "bukkit/api", "pierrelasse/lib/simpleTargets"]
 	},
 	{
+		"name": "pierrelasse/commands/loop",
+		"load": "@pierrelasse/commands/loop",
+		"deps": ["pierrelasse/lang", "bukkit/api"]
+	},
+	{
 		"name": "pierrelasse/commands/respawn",
 		"load": "@pierrelasse/commands/respawn",
 		"deps": ["pierrelasse/lang", "bukkit/api", "pierrelasse/lib/simpleTargets"]
