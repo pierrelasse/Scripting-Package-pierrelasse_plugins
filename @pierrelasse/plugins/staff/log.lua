@@ -10,7 +10,9 @@ local this = {
     ---@type string|adventure.text.Component?
     description = nil,
     ---@type java.List<pierrelasse.plugins.staff.log.CanSee>
-    canSee = nil
+    canSee = nil,
+
+    baseCmp = comp.empty()
 }
 this.__index = this
 
@@ -28,7 +30,7 @@ end
 ---@param name? string
 ---@param canSee? pierrelasse.plugins.staff.log.CanSee
 function this:sub(id, name, canSee)
-    local new = this.new()
+    local new = setmetatable({}, { __index = self })
 
     new.path = self.path.clone()
     new.path.add(id)
@@ -43,7 +45,6 @@ function this:sub(id, name, canSee)
     return new
 end
 
----@protected
 function this:getPrefix()
     return comp.mm(self.name == nil
         and "<dark_aqua>[<aqua>S<dark_aqua>]"
@@ -51,7 +52,8 @@ function this:getPrefix()
 end
 
 ---@param message string|adventure.text.Component|(fun(l: pierrelasse.lang.Locale): adventure.text.Component)
-function this:log(message)
+---@param filter? (bukkit.entity.Player|java.Object)|(fun(p: bukkit.entity.Player): nil|boolean)
+function this:log(message, filter)
     local pathStr = arrays.concat(self.path.toArray(), "/")
 
     local prefix_hover = comp.from("§7This is a staff message!")
@@ -72,9 +74,18 @@ function this:log(message)
         getMessage = function() return comp.from(tostring(message)) end
     end
 
+    if type(filter) ~= "function" and filter ~= nil then
+        if bukkit.isPlayer(filter) then
+            local filtering = filter
+            filter = function(p) return p ~= filtering end
+        else
+            filter = nil
+        end
+    end
+
     Lang.sendMult(
         function(l)
-            return comp.empty()
+            return self.baseCmp
                 .append(prefix.hoverEvent(comp.hoverEvent("SHOW_TEXT", prefix_hover)))
                 .appendSpace()
                 .append(getMessage(l))
@@ -84,6 +95,7 @@ function this:log(message)
             for predicate in forEach(self.canSee) do
                 if predicate(p) == false then return false end
             end
+            if filter and filter(p) == false then return false end
             return true
         end
     )
@@ -94,4 +106,17 @@ self.canSee.add(function(player)
     return player.hasPermission("!.staff") or player.isOp()
 end)
 
-return self
+local dark = this.new()
+dark.canSee = self.canSee
+dark.baseCmp = comp.mm("<#B3B3B3><i>")
+function dark:getPrefix()
+    return comp.mm(self.name == nil
+        and "<dark_gray>[<gray>S</gray>]"
+        or "<dark_gray>[<gray>S</gray>] [<gray>"..self.name.."</gray>]")
+end
+
+return {
+    new = this.new,
+    sub = self.sub,
+    dark = dark
+}
