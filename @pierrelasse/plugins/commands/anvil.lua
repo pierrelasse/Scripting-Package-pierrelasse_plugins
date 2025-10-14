@@ -5,7 +5,9 @@ local this = {
 
 events.onStarted(function()
     commands.add(this.COMMAND, function(sender, args) ---@cast sender bukkit.entity.Player
-        sender.openAnvil(sender.getLocation(), true)
+        local target = sender -- TODO
+
+        target.openAnvil(target.getLocation(), true)
     end)
         .permission(this.PERMISSION)
 end)
