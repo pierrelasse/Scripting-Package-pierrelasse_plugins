@@ -35,6 +35,19 @@ paman.needAndApply("pierrelasse/plugins/commands/anvil", function(p)
 end)
 ```
 
+### [pierrelasse/plugins/commands/bring](./@pierrelasse/plugins/commands/bring.lua)
+
+Teleport a player to you using `/bring <target: player>`.
+
+Configurable using:
+
+```lua
+paman.needAndApply("pierrelasse/plugins/commands/bring", function(p)
+    p.COMMAND = "bring"
+    p.PERMISSION = "commands.bring"
+end)
+```
+
 ### [pierrelasse/plugins/customItems](./@pierrelasse/plugins/customItems/)
 
 WIP.

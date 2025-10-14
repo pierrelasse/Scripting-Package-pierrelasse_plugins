@@ -3,5 +3,10 @@
 		"name": "pierrelasse/commands/anvil",
 		"load": "@pierrelasse/commands/anvil",
 		"deps": ["bukkit/api"]
+	},
+	{
+		"name": "pierrelasse/commands/bring",
+		"load": "@pierrelasse/commands/bring",
+		"deps": ["pierrelasse/lang", "bukkit/api", "pierrelasse/lib/simpleTargets"]
 	}
 ]
