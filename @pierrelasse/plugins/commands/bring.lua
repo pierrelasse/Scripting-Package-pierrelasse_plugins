@@ -13,6 +13,18 @@ Lang.get("en"):put({
     }
 })
 
+Lang.get("de"):put({
+    pierrelasse = {
+        plugins = {
+            commands = {
+                ["bring"] = {
+                    teleported = "{0} zu dir teleportiert"
+                }
+            }
+        }
+    }
+})
+
 local this = {
     COMMAND = "bring",
     PERMISSION = "commands.bring"
