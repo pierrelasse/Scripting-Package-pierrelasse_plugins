@@ -87,6 +87,19 @@ paman.needAndApply("pierrelasse/plugins/commands/doas", function(p)
 end)
 ```
 
+### [pierrelasse/plugins/commands/ecsee](./@pierrelasse/plugins/commands/ecsee.lua)
+
+Open a player's ender chest using `/ecsee <target: player>`.
+
+Configurable using:
+
+```lua
+paman.needAndApply("pierrelasse/plugins/commands/ecsee", function(p)
+    p.COMMAND = "ecsee"
+    p.PERMISSION = "commands.ecsee"
+end)
+```
+
 ### [pierrelasse/plugins/commands/feed](./@pierrelasse/plugins/commands/feed.lua)
 
 Restore a player's food bar using `/feed <target: player>`.

@@ -25,6 +25,11 @@
 		"deps": ["pierrelasse/lang", "bukkit/api"]
 	},
 	{
+		"name": "pierrelasse/commands/ecsee",
+		"load": "@pierrelasse/commands/ecsee",
+		"deps": ["pierrelasse/lang", "bukkit/api", "pierrelasse/lib/simpleTargets"]
+	},
+	{
 		"name": "pierrelasse/commands/feed",
 		"load": "@pierrelasse/commands/feed",
 		"deps": ["pierrelasse/lang", "bukkit/api", "pierrelasse/lib/simpleTargets"]
