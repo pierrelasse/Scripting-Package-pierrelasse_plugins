@@ -48,5 +48,10 @@
 		"name": "pierrelasse/commands/hp",
 		"load": "@pierrelasse/commands/hp",
 		"deps": ["pierrelasse/lang", "bukkit/api", "pierrelasse/lib/simpleTargets"]
+	},
+	{
+		"name": "pierrelasse/commands/invulnerable",
+		"load": "@pierrelasse/commands/invulnerable",
+		"deps": ["pierrelasse/lang", "bukkit/api", "pierrelasse/lib/simpleTargets"]
 	}
 ]

@@ -131,6 +131,20 @@ paman.needAndApply("pierrelasse/plugins/commands/hp", function(p)
 end)
 ```
 
+### [pierrelasse/plugins/commands/invulnerable](./@pierrelasse/plugins/commands/invulnerable.lua)
+
+Set a player's invulnerable state using `/invulnerable <target: player> [<state: boolean>]`.<br>
+This is basically a /god command.
+
+Configurable using:
+
+```lua
+paman.needAndApply("pierrelasse/plugins/commands/invulnerable", function(p)
+    p.COMMAND = { "invulnerable", "god" }
+    p.PERMISSION = "commands.invulnerable"
+end)
+```
+
 ### [pierrelasse/plugins/customItems](./@pierrelasse/plugins/customItems/)
 
 WIP.
