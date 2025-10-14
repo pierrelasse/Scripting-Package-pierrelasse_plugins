@@ -1,3 +1,4 @@
+local complete = require("@pierrelasse/lib/complete")
 local simpleTargets = require("@pierrelasse/lib/simpleTargets")
 
 
@@ -6,6 +7,7 @@ Lang.get("en"):put({
         plugins = {
             commands = {
                 invulnerable = {
+                    invalidState = comp.mm("<red>Invalid state!"),
                     enable = "Made {0} invulnerable",
                     enableLog = "{0} made {1} invulnerable",
                     disable = "Made {0} vulnerable",
@@ -40,6 +42,9 @@ events.onStarted(function()
                 newState = true
             elseif args[2] == "false" then
                 newState = false
+            else
+                Lang.send(sender, "pierrelasse/plugins/commands/invulnerable/invalidState")
+                return
             end
 
             if newState == oldState then return end
@@ -60,6 +65,8 @@ events.onStarted(function()
         .complete(function(completions, sender, args)
             if #args == 1 then
                 simpleTargets.complete(sender, completions, args[1])
+            elseif #args == 2 then
+                complete(completions, args[2], { "true", "false" })
             end
         end)
 end)
