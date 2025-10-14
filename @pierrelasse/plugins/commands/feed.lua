@@ -6,7 +6,19 @@ Lang.get("en"):put({
         plugins = {
             commands = {
                 feed = {
-                    fed = comp.mm("Fed {0} by <orange>{1} <yellow>{2}")
+                    fed = comp.mm("Regenerated {0}'s food by <gold>{1} <yellow>{2}")
+                }
+            }
+        }
+    }
+})
+
+Lang.get("de"):put({
+    pierrelasse = {
+        plugins = {
+            commands = {
+                feed = {
+                    fed = comp.mm("Essen von {0} um <gold>{1}</gold> <yellow>{2}</yellow> regeneriert")
                 }
             }
         }
@@ -40,7 +52,7 @@ function this.feed(sender, target)
 end
 
 events.onStarted(function()
-    commands.add("feed", function(sender, args)
+    commands.add(this.COMMMAND, function(sender, args)
         local target = simpleTargets.find(sender, args[1], sender)
         if target == nil then
             bukkit.send(sender, "§cTarget not found!") -- TODO
