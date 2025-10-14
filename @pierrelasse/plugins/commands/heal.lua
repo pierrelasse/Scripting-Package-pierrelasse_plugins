@@ -6,7 +6,8 @@ Lang.get("en"):put({
         plugins = {
             commands = {
                 heal = {
-                    healed = comp.mm("Healed {0} by <red>❤{1}")
+                    healed = comp.mm("Healed {0} by <red>❤{1}"),
+                    healedLog = comp.mm("{0} healed {1} by <#B30000>❤{2}")
                 }
             }
         }
@@ -18,6 +19,8 @@ local this = {
     PERMISSION = "commands.heal",
     FEED = true
 }
+
+local logDark = require("@pierrelasse/plugins/staff/log").dark:sub("commands/heal")
 
 events.onStarted(function()
     local feed = this.FEED and require("@pierrelasse/plugins/commands/feed")
@@ -38,6 +41,10 @@ events.onStarted(function()
 
         target.setHealth(newHealth)
 
+        logDark:log(function(l)
+            return l:tcf("pierrelasse/plugins/commands/heal/healedLog",
+                sender.getName(), target.getName(), newHealth - oldHealth)
+        end, sender)
         Lang.sendF(sender, "pierrelasse/plugins/commands/heal/healed",
             target.getName(), newHealth - oldHealth)
     end)
