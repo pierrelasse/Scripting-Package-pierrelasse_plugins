@@ -7,7 +7,8 @@ Lang.get("en"):put({
             commands = {
                 respawn = {
                     notDead = comp.mm("<red>{0} is not dead!"),
-                    respawned = "Respawned {0}"
+                    respawned = "Respawned {0}",
+                    respawnedLog = "{0} respawned {1}"
                 }
             }
         }
@@ -32,6 +33,8 @@ local this = {
     PERMISSION = "commands.respawn"
 }
 
+local logDark = require("@pierrelasse/plugins/staff/log").dark:sub("commands/respawn")
+
 events.onStarted(function()
     commands.add(this.COMMAND, function(sender, args)
         if args[1] == nil then
@@ -53,6 +56,12 @@ events.onStarted(function()
 
         target.spigot().respawn()
 
+        if target ~= sender then
+            logDark:log(function(l)
+                return l:tcf("pierrelasse/plugins/commands/respawn/respawnedLog",
+                    sender.getName(), target.getName())
+            end, sender)
+        end
         Lang.sendF(sender, "pierrelasse/plugins/commands/respawn/respawned",
             target.getName())
     end)
