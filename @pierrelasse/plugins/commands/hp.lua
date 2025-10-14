@@ -8,7 +8,8 @@ Lang.get("en"):put({
             commands = {
                 hp = {
                     invalidAmount = comp.mm("<red>Invalid amount!"),
-                    set = comp.mm("Set {0}'s health points to <red>❤{1}")
+                    set = comp.mm("Set {0}'s health points to <red>❤{1}"),
+                    setLog = comp.mm("{0} set {1}'s health points to <#B30000>❤{2}")
                 }
             }
         }
@@ -19,6 +20,8 @@ local this = {
     COMMAND = "hp",
     PERMISSION = "commands.hp"
 }
+
+local logDark = require("@pierrelasse/plugins/staff/log").dark:sub("commands/hp")
 
 ---@param sender java.Object
 ---@param target bukkit.entity.Player
@@ -31,6 +34,12 @@ function this.set(sender, target, amount)
 
     target.setHealth(amount)
 
+    if target ~= sender then
+        logDark:log(function(l)
+            return l:tcf("pierrelasse/plugins/commands/hp/setLog",
+                sender.getName(), target.getName(), amount)
+        end, sender)
+    end
     Lang.sendF(sender, "pierrelasse/plugins/commands/hp/set",
         target.getName(), amount)
 end
