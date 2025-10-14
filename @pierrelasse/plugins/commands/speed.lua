@@ -12,6 +12,7 @@ Lang.get("en"):put({
                     invalidMode = comp.mm("<red>Invalid mode!"),
                     invalidSpeed = comp.mm("<red>Invalid speed!"),
                     set = "Set {0}'s {1} speed to {2}",
+                    setLog = "{0} set {1}'s {2} speed to {3}",
                     setOwn = "Set own {1} speed to {2}"
                 }
             }
@@ -24,6 +25,8 @@ local this = {
     PERMISSION = "commands.speed"
 }
 this.PERMISSION_OTHER = this.PERMISSION..".other"
+
+local logDark = require("@pierrelasse/plugins/staff/log").dark:sub("commands/speed")
 
 events.onStarted(function()
     commands.add(this.COMMAND, function(sender, args)
@@ -78,6 +81,12 @@ events.onStarted(function()
 
         if mode then target.setFlySpeed(speed) else target.setWalkSpeed(speed) end
 
+        if target ~= sender then
+            logDark:log(function(l)
+                return l:tcf("pierrelasse/plugins/commands/speed/setLog",
+                    sender.getName(), target.getName(), mode and "flying" or "walking", speed)
+            end, sender)
+        end
         Lang.sendF(sender, "pierrelasse/plugins/commands/speed/"..((sender == target) and "setOwn" or "set"),
             target.getName(), mode and "flying" or "walking", speed)
     end)
@@ -88,7 +97,7 @@ events.onStarted(function()
             elseif #args == 2 then
                 simpleTargets.complete(sender, completions, args[2])
             elseif #args == 3 then
-                complete(completions, args[1], { "fly", "walk" })
+                complete(completions, args[3], { "fly", "walk" })
             end
         end)
 end)
