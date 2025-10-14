@@ -6,7 +6,8 @@ Lang.get("en"):put({
         plugins = {
             commands = {
                 feed = {
-                    fed = comp.mm("Regenerated {0}'s food by <gold>{1} <yellow>{2}")
+                    fed = comp.mm("Fed {0} by <gold>{1} <yellow>{2}"),
+                    fedLog = comp.mm("{0} fed {1} by <#B87B00>{2} <#B8B800>{3}")
                 }
             }
         }
@@ -30,6 +31,8 @@ local this = {
     PERMISSION = "commands.feed"
 }
 
+local logDark = require("@pierrelasse/plugins/staff/log").dark:sub("commands/feed")
+
 ---@param sender java.Object
 ---@param target bukkit.entity.Player
 function this.feed(sender, target)
@@ -47,6 +50,12 @@ function this.feed(sender, target)
     target.setFoodLevel(newFoodLevel)
     target.setSaturation(newSaturation)
 
+    if target ~= sender then
+        logDark:log(function(l)
+            return l:tcf("pierrelasse/plugins/commands/feed/fedLog",
+                sender.getName(), target.getName(), newFoodLevel - oldFoodLevel, newSaturation - oldSaturation)
+        end, sender)
+    end
     Lang.sendF(sender, "pierrelasse/plugins/commands/feed/fed",
         target.getName(), newFoodLevel - oldFoodLevel, newSaturation - oldSaturation)
 end
