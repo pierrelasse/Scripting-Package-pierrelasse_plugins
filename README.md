@@ -236,6 +236,20 @@ paman.needAndApply("pierrelasse/plugins/commands/respawn", function(p)
 end)
 ```
 
+### [pierrelasse/plugins/commands/speed](./@pierrelasse/plugins/commands/speed.lua)
+
+Set the walking or flying speed of a player using `/speed <speed: number{0-10}|reset> [<target: player>] [<fly|walk>]`.
+
+Configurable using:
+
+```lua
+paman.needAndApply("pierrelasse/plugins/commands/speed", function(p)
+    p.COMMAND = "speed"
+    p.PERMISSION = "commands.speed"
+    p.PERMISSION_OTHER = "commands.speed.other"
+end)
+```
+
 ### [pierrelasse/plugins/customItems](./@pierrelasse/plugins/customItems/)
 
 WIP.

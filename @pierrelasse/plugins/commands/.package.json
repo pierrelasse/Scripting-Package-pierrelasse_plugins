@@ -93,5 +93,15 @@
 		"name": "pierrelasse/commands/respawn",
 		"load": "@pierrelasse/commands/respawn",
 		"deps": ["pierrelasse/lang", "bukkit/api", "pierrelasse/lib/simpleTargets"]
+	},
+	{
+		"name": "pierrelasse/commands/speed",
+		"load": "@pierrelasse/commands/speed",
+		"deps": [
+			"pierrelasse/lang",
+			"bukkit/api",
+			"pierrelasse/lib/complete",
+			"pierrelasse/lib/simpleTargets"
+		]
 	}
 ]
