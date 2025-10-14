@@ -13,5 +13,10 @@
 		"name": "pierrelasse/commands/craft",
 		"load": "@pierrelasse/commands/craft",
 		"deps": ["bukkit/api"]
+	},
+	{
+		"name": "pierrelasse/commands/feed",
+		"load": "@pierrelasse/commands/feed",
+		"deps": ["pierrelasse/lang", "bukkit/api", "pierrelasse/lib/simpleTargets"]
 	}
 ]

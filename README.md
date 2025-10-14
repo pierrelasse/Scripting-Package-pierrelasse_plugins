@@ -61,6 +61,19 @@ paman.needAndApply("pierrelasse/plugins/commands/craft", function(p)
 end)
 ```
 
+### [pierrelasse/plugins/commands/feed](./@pierrelasse/plugins/commands/feed.lua)
+
+Restore a player's food bar using `/feed <target: player>`.
+
+Configurable using:
+
+```lua
+paman.needAndApply("pierrelasse/plugins/commands/feed", function(p)
+    p.COMMAND = "feed"
+    p.PERMISSION = "commands.feed"
+end)
+```
+
 ### [pierrelasse/plugins/customItems](./@pierrelasse/plugins/customItems/)
 
 WIP.
