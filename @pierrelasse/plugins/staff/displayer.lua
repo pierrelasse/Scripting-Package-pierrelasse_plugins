@@ -9,8 +9,21 @@ Lang.get("en"):put({
         plugins = {
             staff = {
                 displayer = {
-                    enabled = "§aDisplay enabled",
-                    disabled = "§aDisplay disabled"
+                    enabled = "{0}§a display enabled",
+                    disabled = "{0}§a display disabled"
+                }
+            }
+        }
+    }
+})
+
+Lang.get("de"):put({
+    pierrelasse = {
+        plugins = {
+            staff = {
+                displayer = {
+                    enabled = "{0}§a Anzeige aktiviert",
+                    disabled = "{0}§a Anzeige deaktiviert"
                 }
             }
         }
@@ -23,60 +36,57 @@ local this = {
 
 ---@type table<string, {
 --- command: string;
---- text: string;
---- actives?: java.Set<bukkit.entity.Player>;
+--- text: adventure.text.Component;
 ---}>
 this.DISPLAYS = {
     admin = {
         command = "admindisplay",
-        text = "§#FE122E§l§nADMINISTRATION"
+        text = comp.mm("<#FE122E><b><u>ADMINISTRATION")
     },
     mod = {
         command = "moddisplay",
-        text = "§#12B024§l§nMODERATION"
+        text = comp.mm("<#12B024><b><u>MODERATION")
     }
 }
 
----@type java.List<bukkit.entity.TextDisplay>
-this.entities = makeList()
-
 events.onStarted(function()
     for id, data in pairs(this.DISPLAYS) do
-        ---@type java.Set<bukkit.entity.Player>
-        local actives = makeSet()
-        data.actives = actives
+        ---@type java.Map<bukkit.entity.Player, java.array<bukkit.entity.TextDisplay>>
+        local players = java.map()
 
-        commands.add(data.command, function(sender, args)
-            ---@cast sender bukkit.entity.Player
-
-            if data.actives.contains(sender) then
-                data.actives.remove(sender)
-                Lang.send(sender, "pierrelasse/plugins/staff/displayer/disabled")
+        commands.add(data.command, function(sender, args) ---@cast sender bukkit.entity.Player
+            if players.remove(sender) ~= nil then
+                Lang.sendF(sender, "pierrelasse/plugins/staff/displayer/disabled", comp.empty().append(data.text))
                 return
             end
-            data.actives.add(sender)
 
-            local function doSpawn()
+            local active = true
+
+            ---@type java.array<bukkit.entity.TextDisplay>
+            local entities = java.array(nil, 6)
+            players.put(sender, entities)
+
+            local legacyText = comp.legacySerialize(data.text)
+
+            local function spawnDisplay()
                 local entity = bukkit.spawn(
                     sender.getLocation()
                     .add(
-                        math.random(-1, 1),
+                        random:float(-1, 1),
                         -.5,
-                        math.random(-1, 1)
+                        random:float(-1, 1)
                     ),
                     "TEXT_DISPLAY"
-                )
-                ---@cast entity bukkit.entity.TextDisplay
+                ) ---@cast entity bukkit.entity.TextDisplay
                 entity.addScoreboardTag("temp")
                 entity.addScoreboardTag("staffdisplay")
-                entity.setBillboard(Display_Billboard.VERTICAL)
-                entity.setText(bukkit.hex(data.text))
+                entity.setBillboard(Display_Billboard.CENTER)
+                entity.setText(legacyText)
 
-                this.entities.add(entity)
+                entity.setInterpolationDelay(-1)
+                entity.setInterpolationDuration(40)
 
                 tasks.wait(1, function()
-                    entity.setInterpolationDelay(-1)
-                    entity.setInterpolationDuration(40)
                     entity.setTransformation(Transformation(
                         Vector3f(0, 3, 0), -- transformation
                         AxisAngle4f(),     -- left rotation
@@ -88,43 +98,52 @@ events.onStarted(function()
                 return entity
             end
 
-            local function launch()
-                local offset = 0
-                local entity = doSpawn()
-
-                local function run()
-                    offset = offset + 1
-
-                    if offset > 40
-                    or not actives.contains(sender)
-                    or not sender.isOnline() then
-                        this.entities.remove(entity)
-                        bukkit.deleteEntity(entity)
-                        if actives.contains(sender) then
-                            tasks.wait(1, launch)
-                        end
+            for idx = 1, 6 do
+                local tick = random:integer(1, 40)
+                tasks.every(1, function(task)
+                    if not active then
+                        task.cancel()
                         return
                     end
-                    tasks.wait(1, run)
+
+                    tick = tick - 1
+                    if tick > 1 then return end
+                    tick = random:integer(1, 40)
+
+                    local prevEntity = entities[idx]
+                    if prevEntity ~= nil then bukkit.deleteEntity(prevEntity) end
+                    if sender.getGameMode().name() == "SPECTATOR" then -- TODO: vanish support?
+                        entities[idx] = nil
+                    else
+                        local entity = spawnDisplay()
+                        entities[idx] = entity
+                    end
+                end)
+            end
+
+            tasks.every(1, function(task)
+                if not sender.isOnline() or players.get(sender) ~= entities then
+                    active = false
+                    task.cancel()
+
+                    for ent in forEach(entities) do
+                        bukkit.deleteEntity(ent)
+                    end
                 end
+            end)
 
-                tasks.wait(1, run)
-            end
-
-            for _ = 1, 6 do
-                tasks.wait(math.random(1, 15), launch)
-            end
-
-            Lang.send(sender, "pierrelasse/plugins/staff/displayer/enabled")
+            Lang.sendF(sender, "pierrelasse/plugins/staff/displayer/enabled", comp.empty().append(data.text))
         end)
             .permission(this.PERMISSION_PREFIX..id)
-    end
 
-    events.onStopping(function()
-        for ent in forEach(this.entities) do
-            bukkit.deleteEntity(ent)
-        end
-    end)
+        events.onStopping(function()
+            for list in forEach(players.values()) do
+                for ent in forEach(list) do
+                    bukkit.deleteEntity(ent)
+                end
+            end
+        end)
+    end
 end)
 
 return this
