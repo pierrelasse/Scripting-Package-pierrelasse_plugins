@@ -6,8 +6,10 @@ Lang.get("en"):put({
         plugins = {
             commands = {
                 invulnerable = {
-                    enable = "Set {0} to be invulnerable",
-                    disable = "Set {0} to be vulnerable"
+                    enable = "Made {0} invulnerable",
+                    enableLog = "{0} made {1} invulnerable",
+                    disable = "Made {0} vulnerable",
+                    disableLog = "{0} made {0} vulnerable"
                 }
             }
         }
@@ -18,6 +20,8 @@ local this = {
     COMMAND = { "invulnerable", "god" },
     PERMISSION = "commands.invulnerable"
 }
+
+local logDark = require("@pierrelasse/plugins/staff/log").dark:sub("commands/invulnerable")
 
 events.onStarted(function()
     commands.add(this.COMMAND, function(sender, args)
@@ -43,6 +47,12 @@ events.onStarted(function()
 
         target.setInvulnerable(newState)
 
+        if target ~= sender then
+            logDark:log(function(l)
+                return l:tcf("pierrelasse/plugins/commands/invulnerable/"..(newState and "enable" or "disable").."Log",
+                    sender.getName(), target.getName())
+            end, sender)
+        end
         Lang.sendF(sender, "pierrelasse/plugins/commands/invulnerable/"..(newState and "enable" or "disable"),
             target.getName())
     end)
