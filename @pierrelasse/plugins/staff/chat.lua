@@ -6,7 +6,7 @@ local this = {
     PERMISSION = "!.staff.chat"
 }
 
-this.log = require("@pierrelasse/plugins/staff/log"):sub("chat", "Chat", function(player)
+this.log = require("@pierrelasse/plugins/staff/log"):sub("staffchat", "Chat", function(player)
     return player.hasPermission(this.PERMISSION)
 end)
 
