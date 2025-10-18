@@ -23,7 +23,7 @@ Lang.get("de"):put({
             commands = {
                 fly = {
                     enable = "{0} kann nun fliegen",
-                    disable = "{0} kann nicht mehr fliegen"
+                    disable = "{0} kann nun nicht mehr fliegen"
                 }
             }
         }
