@@ -1,9 +1,35 @@
 ---@alias pierrelasse.plugins.staff.log.CanSee fun(player: bukkit.entity.Player): boolean
 
----@class pierrelasse.plugins.staff.log.StaffLogger
+---@class pierrelasse.plugins.staff.log.Formatter
+local Formatter = {
+    ---@private
+    ---@type pierrelasse.plugins.staff.log.Logger
+    log = nil
+}
+Formatter.__index = Formatter
+
+---@param player bukkit.entity.Player
+function Formatter:player(player)
+    local playerName = player.getName()
+
+    local hover = comp.text(playerName)
+        .appendNewline()
+        .append(comp.text(player.getUniqueId().toString())
+            .color(comp.colorN("DARK_GRAY")))
+        .appendNewline()
+        .append(comp.text("Click to spectate!"))
+
+    return comp.text(playerName)
+        .hoverEvent(comp.hoverEvent("SHOW_TEXT", hover))
+        .clickEvent(comp.clickEvent("SUGGEST_COMMAND", "/spec "..playerName))
+end
+
+---@class pierrelasse.plugins.staff.log.Logger
 local this = {
     ---@type java.List<string>
     path = nil,
+    ---@type pierrelasse.plugins.staff.log.Formatter
+    formatter = nil,
 
     ---@type string?
     name = nil,
@@ -21,6 +47,7 @@ function this.new()
     local self = setmetatable({}, this)
 
     self.path = java.list()
+    self.formatter = setmetatable({ log = self }, Formatter)
     self.canSee = java.list()
 
     return self
@@ -51,12 +78,12 @@ function this:getPrefix()
         or "<dark_aqua>[<aqua>S "..self.name.."<dark_aqua>]")
 end
 
----@param message string|adventure.text.Component|(fun(l: pierrelasse.lang.Locale): adventure.text.Component)
+---@param message string|adventure.text.Component|(fun(l: pierrelasse.lang.Locale, fmt: pierrelasse.plugins.staff.log.Formatter): adventure.text.Component)
 ---@param filter? (bukkit.entity.Player|java.Object)|(fun(p: bukkit.entity.Player): nil|boolean)
 function this:log(message, filter)
     local pathStr = arrays.concat(self.path.toArray(), "/")
 
-    local prefix_hover = comp.from("§7This is a staff message!")
+    local prefix_hover = comp.from("§7This is a staff message!") -- TODO
     if self.description ~= nil then
         prefix_hover = prefix_hover
             .appendNewline().append(comp.from(self.description))
@@ -88,7 +115,7 @@ function this:log(message, filter)
             return self.baseCmp
                 .append(prefix.hoverEvent(comp.hoverEvent("SHOW_TEXT", prefix_hover)))
                 .appendSpace()
-                .append(getMessage(l))
+                .append(getMessage(l, self.formatter))
         end,
         bukkit.playersLoop(),
         function(p)
@@ -101,12 +128,15 @@ function this:log(message, filter)
     )
 end
 
+---@class pierrelasse.plugins.staff.log.StaffLogger.Base : pierrelasse.plugins.staff.log.Logger
+---@field dark pierrelasse.plugins.staff.log.Logger
 local self = this.new()
 self.canSee.add(function(player)
     return player.hasPermission("!.staff") or player.isOp()
 end)
 
 local dark = this.new()
+self.dark = dark
 dark.canSee = self.canSee
 dark.baseCmp = comp.mm("<#B3B3B3><i>")
 function dark:getPrefix()
@@ -115,8 +145,4 @@ function dark:getPrefix()
         or "<dark_gray>[<gray>S</gray>] [<gray>"..self.name.."</gray>]")
 end
 
-return {
-    new = this.new,
-    sub = self.sub,
-    dark = dark
-}
+return self
