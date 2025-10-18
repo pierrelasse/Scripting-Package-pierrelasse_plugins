@@ -24,27 +24,37 @@
 	{
 		"name": "pierrelasse/commands/anvil",
 		"load": "@pierrelasse/commands/anvil",
-		"deps": ["bukkit/api"]
+		"deps": ["bukkit/api", "pierrelasse/plugins/staff/log"]
 	},
 	{
 		"name": "pierrelasse/commands/bring",
 		"load": "@pierrelasse/commands/bring",
-		"deps": ["pierrelasse/lang", "bukkit/api", "pierrelasse/lib/simpleTargets"]
+		"deps": [
+			"pierrelasse/lang",
+			"bukkit/api",
+			"pierrelasse/lib/simpleTargets",
+			"pierrelasse/plugins/staff/log"
+		]
 	},
 	{
 		"name": "pierrelasse/commands/copyinventory",
 		"load": "@pierrelasse/commands/copyinventory",
-		"deps": ["pierrelasse/lang", "bukkit/api", "pierrelasse/lib/simpleTargets"]
+		"deps": [
+			"pierrelasse/lang",
+			"bukkit/api",
+			"pierrelasse/lib/simpleTargets",
+			"pierrelasse/plugins/staff/log"
+		]
 	},
 	{
 		"name": "pierrelasse/commands/craft",
 		"load": "@pierrelasse/commands/craft",
-		"deps": ["bukkit/api"]
+		"deps": ["bukkit/api", "pierrelasse/plugins/staff/log"]
 	},
 	{
 		"name": "pierrelasse/commands/doas",
 		"load": "@pierrelasse/commands/doas",
-		"deps": ["pierrelasse/lang", "bukkit/api"]
+		"deps": ["pierrelasse/lang", "bukkit/api", "pierrelasse/plugins/staff/log"]
 	},
 	{
 		"name": "pierrelasse/commands/ecsee",
@@ -54,7 +64,12 @@
 	{
 		"name": "pierrelasse/commands/feed",
 		"load": "@pierrelasse/commands/feed",
-		"deps": ["pierrelasse/lang", "bukkit/api", "pierrelasse/lib/simpleTargets"]
+		"deps": [
+			"pierrelasse/lang",
+			"bukkit/api",
+			"pierrelasse/lib/simpleTargets",
+			"pierrelasse/plugins/staff/log"
+		]
 	},
 	{
 		"name": "pierrelasse/commands/fly",
@@ -63,7 +78,8 @@
 			"pierrelasse/lang",
 			"bukkit/api",
 			"pierrelasse/lib/complete",
-			"pierrelasse/lib/simpleTargets"
+			"pierrelasse/lib/simpleTargets",
+			"pierrelasse/plugins/staff/log"
 		]
 	},
 	{
@@ -73,13 +89,19 @@
 			"pierrelasse/lang",
 			"bukkit/api",
 			"pierrelasse/lib/complete",
-			"pierrelasse/lib/simpleTargets"
+			"pierrelasse/lib/simpleTargets",
+			"pierrelasse/plugins/staff/log"
 		]
 	},
 	{
 		"name": "pierrelasse/commands/goto",
 		"load": "@pierrelasse/commands/goto",
-		"deps": ["pierrelasse/lang", "bukkit/api", "pierrelasse/lib/simpleTargets"]
+		"deps": [
+			"pierrelasse/lang",
+			"bukkit/api",
+			"pierrelasse/lib/simpleTargets",
+			"pierrelasse/plugins/staff/log"
+		]
 	},
 	{
 		"name": "pierrelasse/commands/heal",
@@ -88,33 +110,55 @@
 			"pierrelasse/lang",
 			"bukkit/api",
 			"pierrelasse/lib/simpleTargets",
-			"pierrelasse/plugins/commands/feed"
+			"pierrelasse/plugins/commands/feed",
+			"pierrelasse/plugins/staff/log"
 		]
 	},
 	{
 		"name": "pierrelasse/commands/hp",
 		"load": "@pierrelasse/commands/hp",
-		"deps": ["pierrelasse/lang", "bukkit/api", "pierrelasse/lib/simpleTargets"]
+		"deps": [
+			"pierrelasse/lang",
+			"bukkit/api",
+			"pierrelasse/lib/complete",
+			"pierrelasse/lib/simpleTargets",
+			"pierrelasse/plugins/staff/log"
+		]
 	},
 	{
 		"name": "pierrelasse/commands/invsee",
 		"load": "@pierrelasse/commands/invsee",
-		"deps": ["pierrelasse/lang", "bukkit/api", "pierrelasse/lib/simpleTargets"]
+		"deps": [
+			"pierrelasse/lang",
+			"bukkit/api",
+			"pierrelasse/lib/simpleTargets",
+			"pierrelasse/plugins/staff/log"
+		]
 	},
 	{
 		"name": "pierrelasse/commands/invulnerable",
 		"load": "@pierrelasse/commands/invulnerable",
-		"deps": ["pierrelasse/lang", "bukkit/api", "pierrelasse/lib/simpleTargets"]
+		"deps": [
+			"pierrelasse/lang",
+			"bukkit/api",
+			"pierrelasse/lib/simpleTargets",
+			"pierrelasse/plugins/staff/log"
+		]
 	},
 	{
 		"name": "pierrelasse/commands/loop",
 		"load": "@pierrelasse/commands/loop",
-		"deps": ["pierrelasse/lang", "bukkit/api"]
+		"deps": ["pierrelasse/lang", "bukkit/api", "pierrelasse/plugins/staff/log"]
 	},
 	{
 		"name": "pierrelasse/commands/respawn",
 		"load": "@pierrelasse/commands/respawn",
-		"deps": ["pierrelasse/lang", "bukkit/api", "pierrelasse/lib/simpleTargets"]
+		"deps": [
+			"pierrelasse/lang",
+			"bukkit/api",
+			"pierrelasse/lib/simpleTargets",
+			"pierrelasse/plugins/staff/log"
+		]
 	},
 	{
 		"name": "pierrelasse/commands/speed",
@@ -123,7 +167,8 @@
 			"pierrelasse/lang",
 			"bukkit/api",
 			"pierrelasse/lib/complete",
-			"pierrelasse/lib/simpleTargets"
+			"pierrelasse/lib/simpleTargets",
+			"pierrelasse/plugins/staff/log"
 		]
 	}
 ]
