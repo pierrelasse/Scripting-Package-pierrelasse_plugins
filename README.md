@@ -335,6 +335,41 @@ Interface for messaging staff.
 
 // TODO
 
+### [pierrelasse/plugins/chatCooldown](./@pierrelasse/plugins/chatCooldown.lua)
+
+Adds a cooldown for sending chat messages.
+
+Configurable using:
+
+```lua
+paman.needAndApply("pierrelasse/plugins/chatCooldown", function(p)
+    Lang.get("en"):put({
+        pierrelasse = {
+            plugins = {
+                chatCooldown = {
+                    cooldown = comp.mm("<red>Please wait before sending another message! <#b4453b>({0}s)"),
+                    highCooldownLog = "{0}'s cooldown is {1}s: {2}",
+                    tooQuicklyLog = "{0} sent another message within {1}s: {2}"
+                }
+            }
+        }
+    })
+
+    -- How much cooldown should be added when a message is sent.
+    p.COOLDOWN_INCREASE = function(player)
+        return 1.5
+    end
+
+    -- How big the cooldown can be before it prevents sending a message.
+    p.COOLDOWN_THRESHOLD = function(player)
+        return 1.8
+    end
+
+    -- When to report a player spamming to staff.
+    p.REPORT_HIGH_COOLDOWN_AT = 5
+end)
+```
+
 ### [pierrelasse/plugins/combat](./@pierrelasse/plugins/combat.lua)
 
 Interface for storing & managing combat timers.
