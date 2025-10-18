@@ -1,5 +1,27 @@
 [
 	{
+		"name": "pierrelasse/commands/#all",
+		"deps": [
+			"pierrelasse/commands/anvil",
+			"pierrelasse/commands/bring",
+			"pierrelasse/commands/copyinventory",
+			"pierrelasse/commands/craft",
+			"pierrelasse/commands/doas",
+			"pierrelasse/commands/ecsee",
+			"pierrelasse/commands/feed",
+			"pierrelasse/commands/fly",
+			"pierrelasse/commands/gamemode",
+			"pierrelasse/commands/goto",
+			"pierrelasse/commands/heal",
+			"pierrelasse/commands/hp",
+			"pierrelasse/commands/invsee",
+			"pierrelasse/commands/invulnerable",
+			"pierrelasse/commands/loop",
+			"pierrelasse/commands/respawn",
+			"pierrelasse/commands/speed"
+		]
+	},
+	{
 		"name": "pierrelasse/commands/anvil",
 		"load": "@pierrelasse/commands/anvil",
 		"deps": ["bukkit/api"]

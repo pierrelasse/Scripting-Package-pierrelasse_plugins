@@ -22,6 +22,10 @@ admincommandsCfg.modules.remove("fly") -- disables /fly
 admincommandsCfg.modules.remove("loop") -- disables /loop
 ```
 
+### [pierrelasse/plugins/commands/#all](./@pierrelasse/plugins/commands/#all.lua)
+
+A collection of all commands from pierrelasse/plugins/commands.
+
 ### [pierrelasse/plugins/commands/anvil](./@pierrelasse/plugins/commands/anvil.lua)
 
 A simple /anvil command.
