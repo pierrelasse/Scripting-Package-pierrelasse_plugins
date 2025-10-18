@@ -4,6 +4,8 @@ Various features, interfaces, and more made by me that can change the gameplay.
 
 ### [pierrelasse/plugins/admincommands](./@pierrelasse/plugins/admincommands/)
 
+**Will be deprecated in favor of `pierrelasse/plugins/commands/...`.**
+
 Operator utilities like /heal, /invsee, /sudo, /fly.
 
 A full list of commands: cloneinv, ecsee, feed, fly, gm, gms, gmc, gma, gmsp, heal, hp, invsee, loop, speed, sudo
