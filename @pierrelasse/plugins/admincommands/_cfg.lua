@@ -1,6 +1,7 @@
 return {
+    ---@deprecated
     permissionPrefix = "admincommands.",
-    ---@type java.List<string>
+    ---@deprecated
     modules = java.listOf(
         "cloneinv",
         "ecsee",
@@ -10,11 +11,8 @@ return {
         "heal",
         "hp",
         "invsee",
-        "loop",
-        "speed",
-        "sudo"
+        "speed"
     ),
-    message = {
-        targetNotFound = "§cTarget not found!"
-    }
+    ---@deprecated
+    message = {}
 }
