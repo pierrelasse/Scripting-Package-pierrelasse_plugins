@@ -209,7 +209,7 @@ end)
 
 ### [pierrelasse/plugins/commands/respawn](./@pierrelasse/plugins/commands/respawn.lua)
 
-Respawn a dead player using `/respawn <target: player>`.<br>
+Respawn a dead player using `/respawn <target: player>`.
 
 Configurable using:
 
