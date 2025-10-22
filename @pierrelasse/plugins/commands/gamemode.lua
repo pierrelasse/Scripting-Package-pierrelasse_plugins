@@ -28,15 +28,9 @@ Lang.get("de"):put({
         plugins = {
             commands = {
                 gamemode = {
-                    invalid = comp.mm("<red>Ungültiger Game-Mode!"),
-                    set = "Game-Mode von {0} auf {1} gesetzt",
-                    setOwn = "Game-Mode auf {1} gesetzt",
-                    mode = {
-                        SURVIVAL = "Survival",
-                        CREATIVE = "Creative",
-                        ADVENTURE = "Adventure",
-                        SPECTATOR = "Spectator"
-                    }
+                    invalid = comp.mm("<red>Ungültiger Gamemode!"),
+                    set = "Gamemode von {0} auf {1} gesetzt",
+                    setOwn = "Eigenen Gamemode auf {1} gesetzt"
                 }
             }
         }
@@ -78,7 +72,7 @@ function this.set(sender, target, gameMode)
     local stringifiedGameMode = Lang.l(sender):t("pierrelasse/plugins/commands/gamemode/mode/"..gameMode.name())
     if target == sender then
         Lang.sendF(sender, "pierrelasse/plugins/commands/gamemode/setOwn",
-            stringifiedGameMode)
+            target.getName(), stringifiedGameMode)
     else
         logDark:log(function(l)
             return l:tcf("pierrelasse/plugins/commands/gamemode/setLog",
