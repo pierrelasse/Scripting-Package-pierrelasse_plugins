@@ -14,6 +14,18 @@ Lang.get("en"):put({
     }
 })
 
+Lang.get("de"):put({
+    pierrelasse = {
+        plugins = {
+            commands = {
+                heal = {
+                    healed = comp.mm("{0} um <red>❤{1}</red> regeneriert")
+                }
+            }
+        }
+    }
+})
+
 local this = {
     COMMANDS = "heal",
     PERMISSION = "commands.heal",
@@ -41,14 +53,15 @@ events.onStarted(function()
 
         target.setHealth(newHealth)
 
+        local diffStr = numbers.round(newHealth - oldHealth, 2)
         if target ~= sender then
             logDark:log(function(l)
                 return l:tcf("pierrelasse/plugins/commands/heal/healedLog",
-                    sender.getName(), target.getName(), newHealth - oldHealth)
+                    sender.getName(), target.getName(), diffStr)
             end, sender)
         end
         Lang.sendF(sender, "pierrelasse/plugins/commands/heal/healed",
-            target.getName(), newHealth - oldHealth)
+            target.getName(), diffStr)
     end)
         .permission(this.PERMISSION)
         .complete(function(completions, sender, args)
