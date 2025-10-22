@@ -489,3 +489,24 @@ Useful for recording, testing, and much more!
 **WIP**
 
 Manages sending, tracking, and accepting teleport requests between players.
+
+### [pierrelasse/plugins/tpRequestsCommands](./@pierrelasse/plugins/tpRequestsCommands.lua)
+
+Provides and handles the commands, UI, and localization for sending, receiving, and accepting TPA (teleport) requests between players.
+
+Configurable using:
+
+```lua
+paman.needAndApply("pierrelasse/plugins/tpRequestsCommands", function(p)
+    -- Translations are also configurable.
+
+    p.COMMAND_SEND = "tpa"
+    p.COMMAND_SEND_PERMISSION = "commands.tpa"
+
+    p.COMMAND_SENDHERE = "tpahere"
+    p.COMMAND_SENDHERE_PERMISSION = "commands.tpahere"
+
+    p.COMMAND_ACCEPT = "tpaccept"
+    p.COMMAND_ACCEPT_PERMISSION = "commands.tpaccept"
+end)
+```
