@@ -89,7 +89,6 @@ Lang.get("de"):put({
     }
 })
 
-
 local this = {
     COMMAND_SEND = "tpa",
     COMMAND_SEND_PERMISSION = "commands.tpa",
