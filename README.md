@@ -483,3 +483,9 @@ Example:
 5. Player1 joins
 
 Useful for recording, testing, and much more!
+
+### [pierrelasse/plugins/tpRequests](./@pierrelasse/plugins/tpRequests.lua)
+
+**WIP**
+
+Manages sending, tracking, and accepting teleport requests between players.
