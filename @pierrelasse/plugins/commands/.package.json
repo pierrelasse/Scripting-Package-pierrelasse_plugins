@@ -1,6 +1,6 @@
 [
 	{
-		"name": "pierrelasse/plugins/commands/#all",
+		"name": "pierrelasse/plugins/commands/*all",
 		"deps": [
 			"pierrelasse/plugins/commands/anvil",
 			"pierrelasse/plugins/commands/bring",
