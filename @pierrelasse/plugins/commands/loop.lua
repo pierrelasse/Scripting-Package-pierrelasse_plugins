@@ -52,9 +52,9 @@ events.onStarted(function()
                 sender.chat(message)
             end)
 
-        logDark:log(function(l)
+        logDark:log(function(l, fmt)
             return l:tcf("pierrelasse/plugins/commands/loop/doingLog",
-                sender.getName(), amount, delay, message)
+                fmt:player(sender), amount, delay, message)
         end, sender)
         Lang.sendF(sender, "pierrelasse/plugins/commands/loop/doing",
             amount, delay, message)

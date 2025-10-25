@@ -53,9 +53,9 @@ events.onStarted(function()
         target.setInvulnerable(newState)
 
         if target ~= sender then
-            logDark:log(function(l)
+            logDark:log(function(l, fmt)
                 return l:tcf("pierrelasse/plugins/commands/invulnerable/"..(newState and "enable" or "disable").."Log",
-                    sender.getName(), target.getName())
+                    fmt:player(sender), fmt:player(target))
             end, sender)
         end
         Lang.sendF(sender, "pierrelasse/plugins/commands/invulnerable/"..(newState and "enable" or "disable"),

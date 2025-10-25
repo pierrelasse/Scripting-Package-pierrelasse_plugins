@@ -74,9 +74,9 @@ function this.set(sender, target, gameMode)
         Lang.sendF(sender, "pierrelasse/plugins/commands/gamemode/setOwn",
             target.getName(), stringifiedGameMode)
     else
-        logDark:log(function(l)
+        logDark:log(function(l, fmt)
             return l:tcf("pierrelasse/plugins/commands/gamemode/setLog",
-                sender.getName(), target.getName(), stringifiedGameMode)
+                fmt:player(sender), fmt:player(target), stringifiedGameMode)
         end, sender)
         Lang.sendF(sender, "pierrelasse/plugins/commands/gamemode/set",
             target.getName(), stringifiedGameMode)

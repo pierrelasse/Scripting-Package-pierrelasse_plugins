@@ -33,9 +33,9 @@ events.onStarted(function()
 
         target.chat(message)
 
-        logDark:log(function(l)
+        logDark:log(function(l, fmt)
             return l:tcf("pierrelasse/plugins/commands/doas/didLog",
-                sender.getName(), target.getName(), message)
+                fmt:player(sender), fmt:player(target), message)
         end, sender)
         Lang.sendF(sender, "pierrelasse/plugins/commands/doas/did",
             target.getName(), message)

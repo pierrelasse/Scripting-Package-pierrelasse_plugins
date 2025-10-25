@@ -51,9 +51,9 @@ function this.feed(sender, target)
     target.setSaturation(newSaturation)
 
     if target ~= sender then
-        logDark:log(function(l)
+        logDark:log(function(l, fmt)
             return l:tcf("pierrelasse/plugins/commands/feed/fedLog",
-                sender.getName(), target.getName(), newFoodLevel - oldFoodLevel, newSaturation - oldSaturation)
+                fmt:player(sender), fmt:player(target), newFoodLevel - oldFoodLevel, newSaturation - oldSaturation)
         end, sender)
     end
     Lang.sendF(sender, "pierrelasse/plugins/commands/feed/fed",

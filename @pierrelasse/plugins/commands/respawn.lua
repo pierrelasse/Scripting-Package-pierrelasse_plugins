@@ -57,9 +57,9 @@ events.onStarted(function()
         target.spigot().respawn()
 
         if target ~= sender then
-            logDark:log(function(l)
+            logDark:log(function(l, fmt)
                 return l:tcf("pierrelasse/plugins/commands/respawn/respawnedLog",
-                    sender.getName(), target.getName())
+                    fmt:player(sender), fmt:player(target))
             end, sender)
         end
         Lang.sendF(sender, "pierrelasse/plugins/commands/respawn/respawned",

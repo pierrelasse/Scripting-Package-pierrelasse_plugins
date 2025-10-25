@@ -55,9 +55,9 @@ events.onStarted(function()
 
         destination.getInventory().setContents(source.getInventory().getContents())
 
-        logDark:log(function(l)
+        logDark:log(function(l, fmt)
             return l:tcf("pierrelasse/plugins/commands/copyinventory/copiedLog",
-                sender.getName(), source.getName(), destination.getName())
+                fmt:player(sender), fmt:player(source), fmt:player(destination))
         end, sender)
         Lang.sendF(sender, "pierrelasse/plugins/commands/copyinventory/copied",
             source.getName(), destination.getName())

@@ -82,9 +82,9 @@ events.onStarted(function()
         if mode then target.setFlySpeed(speed) else target.setWalkSpeed(speed) end
 
         if target ~= sender then
-            logDark:log(function(l)
+            logDark:log(function(l, fmt)
                 return l:tcf("pierrelasse/plugins/commands/speed/setLog",
-                    sender.getName(), target.getName(), mode and "flying" or "walking", speed)
+                    fmt:player(sender), fmt:player(target), mode and "flying" or "walking", speed)
             end, sender)
         end
         Lang.sendF(sender, "pierrelasse/plugins/commands/speed/"..((sender == target) and "setOwn" or "set"),

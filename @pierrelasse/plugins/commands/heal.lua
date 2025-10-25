@@ -55,9 +55,9 @@ events.onStarted(function()
 
         local diffStr = numbers.round(newHealth - oldHealth, 2)
         if target ~= sender then
-            logDark:log(function(l)
+            logDark:log(function(l, fmt)
                 return l:tcf("pierrelasse/plugins/commands/heal/healedLog",
-                    sender.getName(), target.getName(), diffStr)
+                    fmt:player(sender), fmt:player(target), diffStr)
             end, sender)
         end
         Lang.sendF(sender, "pierrelasse/plugins/commands/heal/healed",

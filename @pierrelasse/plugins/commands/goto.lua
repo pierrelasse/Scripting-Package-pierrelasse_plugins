@@ -49,9 +49,9 @@ events.onStarted(function()
         sender.setFallDistance(0)
         bukkit.teleport(sender, target.getLocation())
 
-        logDark:log(function(l)
+        logDark:log(function(l, fmt)
             return l:tcf("pierrelasse/plugins/commands/goto/teleportedLog",
-                sender.getName(), target.getName())
+                fmt:player(sender), fmt:player(target))
         end, sender)
         Lang.sendF(sender, "pierrelasse/plugins/commands/goto/teleported",
             target.getName())

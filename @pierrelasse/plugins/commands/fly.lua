@@ -64,9 +64,9 @@ events.onStarted(function()
         if newState and not target.isOnGround() then target.setFlying(newState) end
 
         if target ~= sender then
-            logDark:log(function(l)
+            logDark:log(function(l, fmt)
                 return l:tcf("pierrelasse/plugins/commands/fly/"..(newState and "enable" or "disable").."Log",
-                    sender.getName(), target.getName())
+                    fmt:player(sender), fmt:player(target))
             end, sender)
         end
         Lang.sendF(sender, "pierrelasse/plugins/commands/fly/"..(newState and "enable" or "disable"),
