@@ -234,6 +234,21 @@ paman.needAndApply("pierrelasse/plugins/commands/speed", function(p)
 end)
 ```
 
+### [pierrelasse/plugins/commands/trash](./@pierrelasse/plugins/commands/trash.lua)
+
+Adds /trash which opens a GUI where you can put in items to destroy them.<br>
+There is a history option which lets you restore deleted items.
+
+```lua
+paman.needAndApply("pierrelasse/plugins/commands/trash", function(p)
+    p.HISTORY_SIZE = 0 -- disable history
+    p.HISTORY_SIZE = 5 -- set the history to 5 items saved per player
+
+    p.COMMAND = "trash"
+    p.PERMISSION = "commands.trash"
+end)
+```
+
 ### [pierrelasse/plugins/customItems](./@pierrelasse/plugins/customItems/)
 
 WIP.
