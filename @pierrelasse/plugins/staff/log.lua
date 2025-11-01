@@ -1,3 +1,6 @@
+local nameFormatter = require("@pierrelasse/lib/nameFormatter")
+
+
 ---@alias pierrelasse.plugins.staff.log.CanSee fun(player: bukkit.entity.Player): boolean
 
 ---@class pierrelasse.plugins.staff.log.Formatter
@@ -8,8 +11,14 @@ local Formatter = {
 }
 Formatter.__index = Formatter
 
----@param player bukkit.entity.Player
+---@param player bukkit.entity.Player|java.Object
 function Formatter:player(player)
+    -- TODO
+    if not bukkit.isPlayer(player) then
+        return comp.text("CONSOLE")
+            .hoverEvent(comp.hoverEvent("SHOW_TEXT", comp.text("This is the console or a command block, etc.")))
+    end ---@cast player bukkit.entity.Player
+
     local playerName = player.getName()
 
     local hover = comp.text(playerName)
@@ -19,7 +28,7 @@ function Formatter:player(player)
         .appendNewline()
         .append(comp.text("Click to spectate!"))
 
-    return comp.text(playerName)
+    return comp.legacyDeserialize(nameFormatter.prefixName(player))
         .hoverEvent(comp.hoverEvent("SHOW_TEXT", hover))
         .clickEvent(comp.clickEvent("SUGGEST_COMMAND", "/spec "..playerName))
 end
