@@ -1,4 +1,3 @@
-local nameFormatter = require("@pierrelasse/lib/nameFormatter")
 local SimpleCooldowns = require("@pierrelasse/lib/SimpleCooldowns")
 
 
@@ -9,7 +8,8 @@ Lang.get("en"):put({
                 helpop = {
                     needMessage = comp.from("§cPlease specify a message!"),
                     waitBeforeUsingAgain = comp.from("§cPlease wait before using HelpOP again!"),
-                    sent = comp.from("§aHelpOP sent! Staff will be with you shortly")
+                    sent = comp.from("§aHelpOP sent! Staff will be with you shortly"),
+                    receive = comp.mm("{0}<gray>: <#eff5ff>{1}")
                 }
             }
         }
@@ -42,12 +42,9 @@ events.onStarted(function()
             return
         end
 
-        this.log:log(function(l)
-            return comp.empty()
-                .append(comp.from(nameFormatter.prefixName(sender)))
-                .append(comp.text(":").color(comp.colorN("GRAY")))
-                .appendSpace()
-                .append(comp.text(message).color(comp.colorHex("#eff5ff")))
+        this.log:log(function(l, fmt)
+            return l:tcf("pierrelasse/plugins/staff/helpop/receive",
+                fmt:player(sender), message)
         end)
 
         Lang.send(sender, "pierrelasse/plugins/staff/helpop/sent")
