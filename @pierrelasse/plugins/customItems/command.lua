@@ -20,7 +20,7 @@ events.onStarted(function()
         end
 
         bukkit.addItem(sender, item:buildItem():build())
-        bukkit.send(sender, "§aItem given!")
+        bukkit.send(sender, comp.mm("<green>Item <dark_green>"..item.id.."</dark_green> given!"))
     end)
         .permission(cfg.COMMAND.permission)
         .complete(function(completions, sender, args)

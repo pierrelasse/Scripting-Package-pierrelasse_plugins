@@ -11,44 +11,28 @@ local function cmpToStr(v)
     return v
 end
 
----@class pierrelasse.plugins.customItems.Item.Ability
+---@class pierrelasse.plugins.customItems.Item.Ability<E> : {
+--- activate: fun(player: bukkit.entity.Player, event: E): nil|true|boolean;
+---}
 ---@field hidden? true|boolean
 ---@field name? string|adventure.text.Component
 ---@field description? string|adventure.text.Component
----@field activate fun(player: bukkit.entity.Player, data?: any, event?: java.Object): boolean? ---@return if it activated
 
 ---@class pierrelasse.plugins.customItems.Item
 ---@field id string
 ---@field description? string|adventure.text.Component
 ---@field item? bukkit.ItemBuilder
 ---
----@field abilityLeftClick? pierrelasse.plugins.customItems.Item.Ability
----@field abilityRightClick? pierrelasse.plugins.customItems.Item.Ability
----@field abilityConsume? pierrelasse.plugins.customItems.Item.Ability
----@field abilityPlace? pierrelasse.plugins.customItems.Item.Ability
+---@field abilityLeftClick? pierrelasse.plugins.customItems.Item.Ability<pierrelasse.lib.clickListener.Event>
+---@field abilityRightClick? pierrelasse.plugins.customItems.Item.Ability<pierrelasse.lib.clickListener.Event>
+---@field abilityConsume? pierrelasse.plugins.customItems.Item.Ability<{ player: bukkit.entity.Player; itemStack: bukkit.ItemStack; }>
+---@field abilityPlace? pierrelasse.plugins.customItems.Item.Ability<{ player: bukkit.entity.Player; block: bukkit.block.Block; itemStack: bukkit.ItemStack; }>
 local this = {}
 this.__index = this
 
-function this.new()
-    local self = setmetatable({}, this)
-
-    return self
-end
-
 ---@param id string
----@param builder fun(item: pierrelasse.plugins.customItems.Item)
-function manager.make(id, builder)
-    local item = this.new()
-    item.id = id
-
-    builder(item)
-
-    local err = item:validate()
-    if err ~= nil then
-        error("could not validate item "..id..": "..err)
-    end
-
-    manager.map.put(id, item)
+function this.new(id)
+    return setmetatable({ id = id }, this)
 end
 
 ---@param itemStack bukkit.ItemStack
@@ -57,11 +41,7 @@ function this:check(itemStack)
 end
 
 function this:validate()
-    if self.item == nil then
-        return "missing item"
-    end
-
-    return nil
+    if self.item == nil then return "MISSING_ITEM" end
 end
 
 function this:buildItem()
