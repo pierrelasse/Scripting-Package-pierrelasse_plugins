@@ -9,9 +9,9 @@ local this = {
     end
 }
 
----@type java.Map<string, java.Map<pierrelasse.plugins.tpRequests.Request>>
+---@type java.Map<string, java.Map<string, pierrelasse.plugins.tpRequests.Request>>
 this.requestsByReceiver = java.map()
----@type java.Map<string, java.Map<pierrelasse.plugins.tpRequests.Request>>
+---@type java.Map<string, java.Map<string, pierrelasse.plugins.tpRequests.Request>>
 this.requestsBySender = java.map()
 
 ---@param sender bukkit.entity.Player
