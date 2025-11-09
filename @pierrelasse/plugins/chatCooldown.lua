@@ -77,7 +77,7 @@ events.onStarted(function()
 
         event.setCancelled(true)
 
-        Lang.sendF(player, "pierrelasse/plugins/chatCooldown/cooldown",
+        Lang.messageF(player, "pierrelasse/plugins/chatCooldown/cooldown",
             numbers.round(this.cooldowns:getRemaining(playerId, ""), 1))
     end)
         .priority("LOW")
