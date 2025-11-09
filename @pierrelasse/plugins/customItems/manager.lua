@@ -1,7 +1,10 @@
 local cfg = require("@pierrelasse/plugins/customItems/_cfg")
 
 
-local this = {}
+local this = {
+    ---@type pierrelasse.plugins.customItems.Item
+    Item = nil
+}
 
 ---@type java.Map<string, pierrelasse.plugins.customItems.Item>
 this.map = java.map()
@@ -25,7 +28,7 @@ end
 ---@param id string
 ---@param builder fun(item: pierrelasse.plugins.customItems.Item)
 function this.make(id, builder)
-    local item = this.new(id)
+    local item = this.Item.new(id)
     builder(item)
     this.register(id, item)
 end
@@ -43,8 +46,5 @@ function this.getFromItem(itemStack)
     local id = this.getIdFromItem(itemStack)
     return id and this.get(id)
 end
-
----@type fun(id: string, builder: fun(item: pierrelasse.plugins.customItems.Item))
-this.make = nil
 
 return this

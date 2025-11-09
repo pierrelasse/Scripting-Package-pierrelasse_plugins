@@ -25,7 +25,13 @@ events.onStarted(function()
         .permission(cfg.COMMAND.permission)
         .complete(function(completions, sender, args)
             if #args == 1 then
-                complete(completions, args[1], forEach(manager.map.keySet()))
+                complete(completions, args[1],
+                    forEach(manager.map.entrySet()),
+                    function(i) ---@cast i java.Map.Entry<string, pierrelasse.plugins.customItems.Item>
+                        if i.getValue().hidden ~= true then
+                            return i.getKey()
+                        end
+                    end)
             end
         end)
 end)

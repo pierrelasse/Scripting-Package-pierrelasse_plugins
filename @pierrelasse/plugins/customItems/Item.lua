@@ -20,8 +20,10 @@ end
 
 ---@class pierrelasse.plugins.customItems.Item
 ---@field id string
+---@field hidden? true
 ---@field description? string|adventure.text.Component
 ---@field item? bukkit.ItemBuilder
+---@field [string] unknown
 ---
 ---@field abilityLeftClick? pierrelasse.plugins.customItems.Item.Ability<pierrelasse.lib.clickListener.Event>
 ---@field abilityRightClick? pierrelasse.plugins.customItems.Item.Ability<pierrelasse.lib.clickListener.Event>
@@ -86,4 +88,5 @@ function this:buildItem()
         end)
 end
 
+manager.Item = this
 return this

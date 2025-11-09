@@ -7,7 +7,7 @@ local manager = require("@pierrelasse/plugins/customItems/manager")
 
 events.onStarted(function()
     clickListener.listen(function(event)
-        local itemStack = event.item
+        local itemStack = event.itemStack
 
         local item = manager.getFromItem(itemStack)
         if item == nil then return end
