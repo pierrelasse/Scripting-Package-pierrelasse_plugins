@@ -5,7 +5,7 @@ Lang.get("en"):put({
     pierrelasse = {
         plugins = {
             commands = {
-                ["bring"] = {
+                bring = {
                     teleported = "Teleported {0} to you",
                     teleportedLog = "{0} ⬅ {1}"
                 }
@@ -18,7 +18,7 @@ Lang.get("de"):put({
     pierrelasse = {
         plugins = {
             commands = {
-                ["bring"] = {
+                bring = {
                     teleported = "{0} zu dir teleportiert"
                 }
             }
