@@ -1,5 +1,6 @@
 local HashSet = import("java.util.HashSet")
 local Material = import("org.bukkit.Material")
+local NamespacedKey = import("org.bukkit.NamespacedKey")
 
 local fuzzy = require("@pierrelasse/lib/fuzzy")
 
@@ -26,7 +27,7 @@ do -- material item
     local entries ---@type java.Set<string>
     local function ensure()
         if entries ~= nil then return end
-        entries = HashSet(1420)
+        entries = HashSet(2000)
         for i in forEach(Material.values()) do
             ---@cast i bukkit.Material
             if i.legacy ~= true and i.isItem() then
@@ -38,9 +39,18 @@ do -- material item
     ---@param arg string
     function this.materialItemF(arg)
         ensure()
-        local n = fuzzy.find(arg, forEach(entries), 15)()
-        if n == nil then return end
-        return bukkit.materialMatch(n)
+
+        -- TODO
+        -- local n = fuzzy.find(arg, forEach(entries), 15)()
+        -- if n == nil then return end
+        -- return bukkit.materialMatch(n)
+
+        for entry in forEach(entries) do
+            if entry:endsWith(arg) then
+                local key = NamespacedKey.fromString(entry)
+                return bukkit.registry.MATERIAL.get(key)
+            end
+        end
     end
 
     ---@param completions java.List<string>
