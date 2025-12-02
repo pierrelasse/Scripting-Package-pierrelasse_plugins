@@ -40,7 +40,7 @@ function this.set(sender, target, amount)
                 fmt:player(sender), fmt:player(target), amount)
         end, sender)
     end
-    Lang.sendF(sender, "pierrelasse/plugins/commands/hp/set",
+    Lang.messageF(sender, "pierrelasse/plugins/commands/hp/set",
         target.getName(), amount)
 end
 
@@ -53,7 +53,7 @@ events.onStarted(function()
 
         local amount = tonumber(args[1])
         if amount == nil or not (amount >= 0) then
-            Lang.send(sender, "pierrelasse/plugins/commands/hp/invalidAmount")
+            Lang.message(sender, "pierrelasse/plugins/commands/hp/invalidAmount")
             return
         end
 

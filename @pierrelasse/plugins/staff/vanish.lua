@@ -113,14 +113,14 @@ events.onStarted(function()
 
         if (args[1] == nil and currentLevel > 0) or args[1] == "0" then
             if currentLevel == 0 then
-                Lang.send(sender, "pierrelasse/plugins/staff/vanish/alreadyDisabled")
+                Lang.message(sender, "pierrelasse/plugins/staff/vanish/alreadyDisabled")
                 return
             end
 
             this.setLevel(playerId, 0)
 
             this.updateSees(sender)
-            Lang.send(sender, "pierrelasse/plugins/staff/vanish/disabled")
+            Lang.message(sender, "pierrelasse/plugins/staff/vanish/disabled")
             return
         end
 
@@ -130,18 +130,18 @@ events.onStarted(function()
         else
             level = tonumber(args[1], 10)
             if level == nil then
-                Lang.send(sender, "pierrelasse/plugins/staff/vanish/invalidLevel")
+                Lang.message(sender, "pierrelasse/plugins/staff/vanish/invalidLevel")
                 return
             end
         end
 
         if level > this.getHighestLevel(sender) then
-            Lang.send(sender, "pierrelasse/plugins/staff/vanish/noLevelAccess")
+            Lang.message(sender, "pierrelasse/plugins/staff/vanish/noLevelAccess")
             return
         end
 
         if currentLevel == level then
-            Lang.send(sender, "pierrelasse/plugins/staff/vanish/alreadyEnabled")
+            Lang.message(sender, "pierrelasse/plugins/staff/vanish/alreadyEnabled")
             return
         end
 
@@ -149,9 +149,9 @@ events.onStarted(function()
         this.updateSees(sender)
 
         if level == 1 then
-            Lang.send(sender, "pierrelasse/plugins/staff/vanish/enabled")
+            Lang.message(sender, "pierrelasse/plugins/staff/vanish/enabled")
         else
-            Lang.sendF(sender, "pierrelasse/plugins/staff/vanish/enabledLvl", level)
+            Lang.messageF(sender, "pierrelasse/plugins/staff/vanish/enabledLvl", level)
         end
     end)
         .permission(this.PERMISSION)

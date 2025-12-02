@@ -40,7 +40,7 @@ events.onStarted(function()
 
         sender.openInventory(target.getEnderChest())
 
-        Lang.sendF(sender, "pierrelasse/plugins/commands/ecsee/opened",
+        Lang.messageF(sender, "pierrelasse/plugins/commands/ecsee/opened",
             target.getName())
     end)
         .permission(this.PERMISSION)

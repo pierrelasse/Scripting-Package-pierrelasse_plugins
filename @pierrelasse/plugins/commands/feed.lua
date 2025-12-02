@@ -56,7 +56,7 @@ function this.feed(sender, target)
                 fmt:player(sender), fmt:player(target), newFoodLevel - oldFoodLevel, newSaturation - oldSaturation)
         end, sender)
     end
-    Lang.sendF(sender, "pierrelasse/plugins/commands/feed/fed",
+    Lang.messageF(sender, "pierrelasse/plugins/commands/feed/fed",
         target.getName(), newFoodLevel - oldFoodLevel, newSaturation - oldSaturation)
 end
 

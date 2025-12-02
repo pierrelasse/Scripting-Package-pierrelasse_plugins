@@ -56,7 +56,7 @@ events.onStarted(function()
 
         commands.add(data.command, function(sender, args) ---@cast sender bukkit.entity.Player
             if players.remove(sender) ~= nil then
-                Lang.sendF(sender, "pierrelasse/plugins/staff/displayer/disabled", comp.empty().append(data.text))
+                Lang.messageF(sender, "pierrelasse/plugins/staff/displayer/disabled", comp.empty().append(data.text))
                 return
             end
 
@@ -132,7 +132,7 @@ events.onStarted(function()
                 end
             end)
 
-            Lang.sendF(sender, "pierrelasse/plugins/staff/displayer/enabled", comp.empty().append(data.text))
+            Lang.messageF(sender, "pierrelasse/plugins/staff/displayer/enabled", comp.empty().append(data.text))
         end)
             .permission(this.PERMISSION_PREFIX..id)
 

@@ -53,7 +53,7 @@ events.onStarted(function()
             return l:tcf("pierrelasse/plugins/commands/bring/teleportedLog",
                 fmt:player(sender), fmt:player(target))
         end, sender)
-        Lang.sendF(sender, "pierrelasse/plugins/commands/bring/teleported",
+        Lang.messageF(sender, "pierrelasse/plugins/commands/bring/teleported",
             target.getName())
     end)
         .permission(this.PERMISSION)

@@ -24,7 +24,7 @@ function Formatter:player(player)
     local hover = comp.text(playerName)
         .appendNewline()
         .append(comp.text(player.getUniqueId().toString())
-            .color(comp.colorN("DARK_GRAY")))
+            .color(comp.colorN("dark_gray")))
         .appendNewline()
         .append(comp.text("Click to spectate!"))
 
@@ -97,7 +97,7 @@ function this:log(message, filter)
         prefix_hover = prefix_hover
             .appendNewline().append(comp.from(self.description))
     end
-    prefix_hover = prefix_hover.appendNewline().append(comp.text(pathStr).color(comp.colorN("DARK_GRAY")))
+    prefix_hover = prefix_hover.appendNewline().append(comp.text(pathStr).color(comp.colorN("dark_gray")))
 
     local prefix = self:getPrefix()
 
@@ -119,7 +119,7 @@ function this:log(message, filter)
         end
     end
 
-    Lang.sendMult(
+    Lang.messageMult(
         function(l)
             return self.baseCmp
                 .append(prefix.hoverEvent(comp.hoverEvent("SHOW_TEXT", prefix_hover)))

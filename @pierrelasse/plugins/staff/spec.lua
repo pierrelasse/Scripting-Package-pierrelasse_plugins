@@ -58,7 +58,7 @@ events.onStarted(function()
             bukkit.teleport(sender, loc)
             locations.remove(playerId)
             bukkit.setGameMode(sender, this.RESTORE_GAMEMODE)
-            Lang.send(sender, "pierrelasse/plugins/staff/spec/disabled")
+            Lang.message(sender, "pierrelasse/plugins/staff/spec/disabled")
         end
 
         local function toggle()
@@ -81,7 +81,7 @@ events.onStarted(function()
 
         local target = bukkit.getPlayer(args[1])
         if target == nil or not sender.canSee(target) then
-            Lang.send(sender, "generic/targetNotFound")
+            Lang.message(sender, "generic/targetNotFound")
             return
         end
 

@@ -71,14 +71,14 @@ function this.set(sender, target, gameMode)
 
     local stringifiedGameMode = Lang.l(sender):t("pierrelasse/plugins/commands/gamemode/mode/"..gameMode.name())
     if target == sender then
-        Lang.sendF(sender, "pierrelasse/plugins/commands/gamemode/setOwn",
+        Lang.messageF(sender, "pierrelasse/plugins/commands/gamemode/setOwn",
             target.getName(), stringifiedGameMode)
     else
         logDark:log(function(l, fmt)
             return l:tcf("pierrelasse/plugins/commands/gamemode/setLog",
                 fmt:player(sender), fmt:player(target), stringifiedGameMode)
         end, sender)
-        Lang.sendF(sender, "pierrelasse/plugins/commands/gamemode/set",
+        Lang.messageF(sender, "pierrelasse/plugins/commands/gamemode/set",
             target.getName(), stringifiedGameMode)
     end
 end
@@ -116,7 +116,7 @@ events.onStarted(function()
 
         local gameMode = this.gameModeFromString(args[1])
         if gameMode == nil then
-            Lang.send(sender, "pierrelasse/plugins/commands/gamemode/invalid")
+            Lang.message(sender, "pierrelasse/plugins/commands/gamemode/invalid")
             return
         end
 

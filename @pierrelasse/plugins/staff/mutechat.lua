@@ -45,18 +45,18 @@ events.onStarted(function()
             this.state = not this.state
         elseif args[1] == l:t("pierrelasse/plugins/staff/mutechat/stateOn") then
             if this.state == true then
-                Lang.send(sender, "pierrelasse/plugins/staff/mutechat/alreadyMuted")
+                Lang.message(sender, "pierrelasse/plugins/staff/mutechat/alreadyMuted")
                 return
             end
             this.state = true
         elseif args[1] == l:t("pierrelasse/plugins/staff/mutechat/stateOff") then
             if this.state == false then
-                Lang.send(sender, "pierrelasse/plugins/staff/mutechat/alreadyUnmuted")
+                Lang.message(sender, "pierrelasse/plugins/staff/mutechat/alreadyUnmuted")
                 return
             end
             this.state = false
         else
-            Lang.send(sender, "pierrelasse/plugins/staff/mutechat/invalidState")
+            Lang.message(sender, "pierrelasse/plugins/staff/mutechat/invalidState")
             return
         end
 
@@ -64,12 +64,12 @@ events.onStarted(function()
         if silent then return end
 
         if this.state then
-            Lang.sendMult(
+            Lang.messageMult(
                 function(il)
                     return il:tc("pierrelasse/plugins/staff/mutechat/muted")
                 end, bukkit.playersLoop())
         else
-            Lang.sendMult(
+            Lang.messageMult(
                 function(il)
                     return il:tc("pierrelasse/plugins/staff/mutechat/unmuted")
                 end, bukkit.playersLoop())
@@ -97,7 +97,7 @@ events.onStarted(function()
 
         event.setCancelled(true)
 
-        Lang.send(player, "pierrelasse/plugins/staff/mutechat/currentlyMuted")
+        Lang.message(player, "pierrelasse/plugins/staff/mutechat/currentlyMuted")
     end)
         .priority("LOW")
 end)

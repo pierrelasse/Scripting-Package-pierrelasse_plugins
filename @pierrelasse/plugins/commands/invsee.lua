@@ -40,7 +40,7 @@ events.onStarted(function()
 
         sender.openInventory(target.getInventory())
 
-        Lang.sendF(sender, "pierrelasse/plugins/commands/invsee",
+        Lang.messageF(sender, "pierrelasse/plugins/commands/invsee",
             target.getName())
     end)
         .permission(this.PERMISSION)

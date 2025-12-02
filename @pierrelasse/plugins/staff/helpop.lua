@@ -33,12 +33,12 @@ events.onStarted(function()
     commands.add(this.COMMAND, function(sender, args) ---@cast sender bukkit.entity.Player
         local message = table.concat(args, " "):trim()
         if #message == 0 then
-            Lang.send(sender, "pierrelasse/plugins/staff/helpop/needMessage")
+            Lang.message(sender, "pierrelasse/plugins/staff/helpop/needMessage")
             return
         end
 
         if this.cooldowns:checkOrSet(bukkit.uuid(sender), "", this.COOLDOWN) then
-            Lang.send(sender, "pierrelasse/plugins/staff/helpop/waitBeforeUsingAgain")
+            Lang.message(sender, "pierrelasse/plugins/staff/helpop/waitBeforeUsingAgain")
             return
         end
 
@@ -47,7 +47,7 @@ events.onStarted(function()
                 fmt:player(sender), message)
         end)
 
-        Lang.send(sender, "pierrelasse/plugins/staff/helpop/sent")
+        Lang.message(sender, "pierrelasse/plugins/staff/helpop/sent")
     end)
 end)
 

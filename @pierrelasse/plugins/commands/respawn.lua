@@ -49,7 +49,7 @@ events.onStarted(function()
         end
 
         if not target.isDead() then
-            Lang.sendF(sender, "pierrelasse/plugins/commands/respawn/notDead",
+            Lang.messageF(sender, "pierrelasse/plugins/commands/respawn/notDead",
                 target.getName())
             return
         end
@@ -62,7 +62,7 @@ events.onStarted(function()
                     fmt:player(sender), fmt:player(target))
             end, sender)
         end
-        Lang.sendF(sender, "pierrelasse/plugins/commands/respawn/respawned",
+        Lang.messageF(sender, "pierrelasse/plugins/commands/respawn/respawned",
             target.getName())
     end)
         .permission(this.PERMISSION)

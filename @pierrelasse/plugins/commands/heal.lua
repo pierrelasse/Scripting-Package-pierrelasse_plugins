@@ -60,7 +60,7 @@ events.onStarted(function()
                     fmt:player(sender), fmt:player(target), diffStr)
             end, sender)
         end
-        Lang.sendF(sender, "pierrelasse/plugins/commands/heal/healed",
+        Lang.messageF(sender, "pierrelasse/plugins/commands/heal/healed",
             target.getName(), diffStr)
     end)
         .permission(this.PERMISSION)

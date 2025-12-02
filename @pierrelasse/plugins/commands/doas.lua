@@ -37,7 +37,7 @@ events.onStarted(function()
             return l:tcf("pierrelasse/plugins/commands/doas/didLog",
                 fmt:player(sender), fmt:player(target), message)
         end, sender)
-        Lang.sendF(sender, "pierrelasse/plugins/commands/doas/did",
+        Lang.messageF(sender, "pierrelasse/plugins/commands/doas/did",
             target.getName(), message)
     end)
         .permission(this.PERMISSION)

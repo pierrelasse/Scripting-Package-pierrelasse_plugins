@@ -56,7 +56,7 @@ events.onStarted(function()
             return l:tcf("pierrelasse/plugins/commands/loop/doingLog",
                 fmt:player(sender), amount, delay, message)
         end, sender)
-        Lang.sendF(sender, "pierrelasse/plugins/commands/loop/doing",
+        Lang.messageF(sender, "pierrelasse/plugins/commands/loop/doing",
             amount, delay, message)
     end)
         .permission(this.PERMISSION)

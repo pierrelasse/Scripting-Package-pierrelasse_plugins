@@ -44,7 +44,7 @@ events.onStarted(function()
 
         local destination = simpleTargets.find(sender, args[1])
         if destination == nil then
-            Lang.send(sender, "pierrelasse/plugins/commands/copyinventory/invalidDestination")
+            Lang.message(sender, "pierrelasse/plugins/commands/copyinventory/invalidDestination")
             return
         end
 
@@ -59,7 +59,7 @@ events.onStarted(function()
             return l:tcf("pierrelasse/plugins/commands/copyinventory/copiedLog",
                 fmt:player(sender), fmt:player(source), fmt:player(destination))
         end, sender)
-        Lang.sendF(sender, "pierrelasse/plugins/commands/copyinventory/copied",
+        Lang.messageF(sender, "pierrelasse/plugins/commands/copyinventory/copied",
             source.getName(), destination.getName())
     end)
         .permission(this.PERMISSION)

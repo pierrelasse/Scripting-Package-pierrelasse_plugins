@@ -43,7 +43,7 @@ events.onStarted(function()
         end
 
         if sender ~= target and not sender.hasPermission(this.PERMISSION_OTHER) then
-            Lang.send(sender, "pierrelasse/plugins/commands/speed/missingPermissionOther")
+            Lang.message(sender, "pierrelasse/plugins/commands/speed/missingPermissionOther")
             return
         end
 
@@ -55,7 +55,7 @@ events.onStarted(function()
         elseif args[3] == "walk" then
             mode = false
         else
-            Lang.send(sender, "pierrelasse/plugins/commands/speed/invalidMode")
+            Lang.message(sender, "pierrelasse/plugins/commands/speed/invalidMode")
             return
         end
 
@@ -65,16 +65,16 @@ events.onStarted(function()
         else
             speed = tonumber(args[1])
             if speed == nil then
-                Lang.send(sender, "pierrelasse/plugins/commands/speed/invalidSpeed")
+                Lang.message(sender, "pierrelasse/plugins/commands/speed/invalidSpeed")
                 return
             end
             if speed < -10 or speed > 10 then
-                Lang.send(sender, "pierrelasse/plugins/commands/speed/invalidSpeed")
+                Lang.message(sender, "pierrelasse/plugins/commands/speed/invalidSpeed")
                 return
             end
             speed = speed / 10
             if speed < -1 or speed > 1 then
-                Lang.send(sender, "pierrelasse/plugins/commands/speed/invalidSpeed")
+                Lang.message(sender, "pierrelasse/plugins/commands/speed/invalidSpeed")
                 return
             end
         end
@@ -87,7 +87,7 @@ events.onStarted(function()
                     fmt:player(sender), fmt:player(target), mode and "flying" or "walking", speed)
             end, sender)
         end
-        Lang.sendF(sender, "pierrelasse/plugins/commands/speed/"..((sender == target) and "setOwn" or "set"),
+        Lang.messageF(sender, "pierrelasse/plugins/commands/speed/"..((sender == target) and "setOwn" or "set"),
             target.getName(), mode and "flying" or "walking", speed)
     end)
         .permission(this.PERMISSION)

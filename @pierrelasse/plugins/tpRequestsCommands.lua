@@ -162,7 +162,7 @@ function this.accept(receiver, request)
 
                     tpRequests.acceptRequest(request)
 
-                    Lang.sendF(sender, "pierrelasse/plugins/tpRequestsCommands/receive/accept/"..
+                    Lang.messageF(sender, "pierrelasse/plugins/tpRequestsCommands/receive/accept/"..
                         (request.here and "here" or "to"),
                         receiver.getName())
                 end
@@ -183,12 +183,12 @@ events.onStarted(function()
 
         local err = tpRequests.sendRequest(sender, target)
         if err ~= nil then
-            Lang.sendF(sender, "pierrelasse/plugins/tpRequestsCommands/send/fail", err)
+            Lang.messageF(sender, "pierrelasse/plugins/tpRequestsCommands/send/fail", err)
             return
         end
 
-        Lang.sendF(sender, "pierrelasse/plugins/tpRequestsCommands/send/to", target.getName())
-        Lang.sendF(target, "pierrelasse/plugins/tpRequestsCommands/receive/to", sender.getName())
+        Lang.messageF(sender, "pierrelasse/plugins/tpRequestsCommands/send/to", target.getName())
+        Lang.messageF(target, "pierrelasse/plugins/tpRequestsCommands/receive/to", sender.getName())
     end)
         .permission(this.COMMAND_SEND_PERMISSION)
         .complete(function(completions, sender, args)
@@ -205,12 +205,12 @@ events.onStarted(function()
 
         local err = tpRequests.sendRequest(sender, target, true)
         if err ~= nil then
-            Lang.sendF(sender, "pierrelasse/plugins/tpRequestsCommands/send/fail", err)
+            Lang.messageF(sender, "pierrelasse/plugins/tpRequestsCommands/send/fail", err)
             return
         end
 
-        Lang.sendF(sender, "pierrelasse/plugins/tpRequestsCommands/send/here", target.getName())
-        Lang.sendF(target, "pierrelasse/plugins/tpRequestsCommands/received/here", sender.getName())
+        Lang.messageF(sender, "pierrelasse/plugins/tpRequestsCommands/send/here", target.getName())
+        Lang.messageF(target, "pierrelasse/plugins/tpRequestsCommands/received/here", sender.getName())
     end)
         .permission(this.COMMAND_SENDHERE_PERMISSION)
         .complete(function(completions, sender, args)
@@ -239,7 +239,7 @@ events.onStarted(function()
 
             local request = tpRequests.getRequest(receiverId, bukkit.uuid(target))
             if request == nil then
-                Lang.send(sender, "pierrelasse/plugins/tpRequestsCommands/accept/requestNotFound")
+                Lang.message(sender, "pierrelasse/plugins/tpRequestsCommands/accept/requestNotFound")
                 return
             end
 

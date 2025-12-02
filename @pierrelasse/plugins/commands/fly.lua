@@ -69,7 +69,7 @@ events.onStarted(function()
                     fmt:player(sender), fmt:player(target))
             end, sender)
         end
-        Lang.sendF(sender, "pierrelasse/plugins/commands/fly/"..(newState and "enable" or "disable"),
+        Lang.messageF(sender, "pierrelasse/plugins/commands/fly/"..(newState and "enable" or "disable"),
             target.getName())
     end)
         .permission(this.PERMISSION)

@@ -47,37 +47,37 @@ events.onStarted(function()
 
     commands.add(this.COMMAND, function(sender, args)
         if this.world == nil then
-            Lang.send(sender, "pierrelasse/plugins/staff/void/world/load")
+            Lang.message(sender, "pierrelasse/plugins/staff/void/world/load")
 
             local creator = bukkit.worldManager.create(this.WORLD_NAME)
             creator:setupVoid()
             local world = creator:create()
             if world == nil then
-                Lang.send(sender, "pierrelasse/plugins/staff/void/world/error")
+                Lang.message(sender, "pierrelasse/plugins/staff/void/world/error")
                 return
             end
             this.world = world
         end
 
         if args[1] == nil then
-            Lang.send(sender, "pierrelasse/plugins/staff/void/teleporting")
+            Lang.message(sender, "pierrelasse/plugins/staff/void/teleporting")
             sender.teleport(this.world.getSpawnLocation())
         else
             local target = bukkit.getPlayer(args[1])
             if target == nil then
-                Lang.send(sender, "generic/targetNotFound")
+                Lang.message(sender, "generic/targetNotFound")
                 return
             end
             local targetId = bukkit.uuid(target)
 
             local isTargetInWorld = target.getWorld() == this.world
             if isTargetInWorld then
-                Lang.sendF(sender, "pierrelasse/plugins/staff/void/teleportingBack", target.getName())
+                Lang.messageF(sender, "pierrelasse/plugins/staff/void/teleportingBack", target.getName())
                 bukkit.teleport(target, this.locations.get(targetId))
                 this.locations.remove(targetId)
             else
                 if sender.getWorld() ~= this.world then
-                    Lang.send(sender, "pierrelasse/plugins/staff/void/mustBeInVoidWorld")
+                    Lang.message(sender, "pierrelasse/plugins/staff/void/mustBeInVoidWorld")
                     return
                 end
 
@@ -85,7 +85,7 @@ events.onStarted(function()
                 this.locations.put(targetId, prevLoc)
                 bukkit.teleport(target, sender.getLocation())
 
-                Lang.sendF(
+                Lang.messageF(
                     sender, "pierrelasse/plugins/staff/void/teleporting",
                     target.getName(),
                     (prevLoc.getWorld().getName()..","..prevLoc.getX()..","..prevLoc.getY()..","..prevLoc.getZ()))

@@ -43,7 +43,7 @@ events.onStarted(function()
             elseif args[2] == "false" then
                 newState = false
             else
-                Lang.send(sender, "pierrelasse/plugins/commands/invulnerable/invalidState")
+                Lang.message(sender, "pierrelasse/plugins/commands/invulnerable/invalidState")
                 return
             end
 
@@ -58,7 +58,7 @@ events.onStarted(function()
                     fmt:player(sender), fmt:player(target))
             end, sender)
         end
-        Lang.sendF(sender, "pierrelasse/plugins/commands/invulnerable/"..(newState and "enable" or "disable"),
+        Lang.messageF(sender, "pierrelasse/plugins/commands/invulnerable/"..(newState and "enable" or "disable"),
             target.getName())
     end)
         .permission(this.PERMISSION)
