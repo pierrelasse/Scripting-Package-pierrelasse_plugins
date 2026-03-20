@@ -1,5 +1,6 @@
 local BlockPlaceEvent = import("org.bukkit.event.block.BlockPlaceEvent")
 local PlayerItemConsumeEvent = import("org.bukkit.event.player.PlayerItemConsumeEvent")
+local EntityShootBowEvent = import("org.bukkit.event.entity.EntityShootBowEvent")
 
 local clickListener = require("@pierrelasse/lib/clickListener")
 local manager = require("@pierrelasse/plugins/customItems/manager")
@@ -60,6 +61,31 @@ events.onStarted(function()
                 player = player,
                 block = block,
                 itemStack = itemStack
+            }) == true then
+                event.setCancelled(true)
+            end
+        end
+    end)
+
+    events.listen(EntityShootBowEvent, function(event)
+        local itemStack = event.getBow() ---@type bukkit.ItemStack?
+
+        local item = manager.getFromItem(itemStack)
+        if item == nil then return end ---@cast itemStack bukkit.ItemStack
+
+        if item.abilityShoot ~= nil then
+            local player = event.getEntity()
+            if not bukkit.isPlayer(player) then return end ---@cast player bukkit.entity.Player
+
+            local consumable = event.getConsumable() ---@type bukkit.ItemStack?
+            local projectile = event.getProjectile() ---@type bukkit.Entity
+            local force = event.getForce() ---@type java.float
+
+            if item.abilityShoot.activate(player, {
+                itemStack = itemStack,
+                consumable = consumable,
+                projectile = projectile
+                , force = force
             }) == true then
                 event.setCancelled(true)
             end

@@ -31,6 +31,7 @@ function this.make(id, builder)
     local item = this.Item.new(id)
     builder(item)
     this.register(id, item)
+    return item
 end
 
 ---@param itemStack bukkit.ItemStack?

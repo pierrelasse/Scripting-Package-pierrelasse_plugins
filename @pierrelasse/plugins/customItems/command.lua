@@ -6,9 +6,7 @@ local manager = require("@pierrelasse/plugins/customItems/manager")
 events.onStarted(function()
     if cfg.COMMAND == nil then return end
 
-    commands.add(cfg.COMMAND.name, function(sender, args)
-        ---@cast sender bukkit.entity.Player
-
+    commands.add(cfg.COMMAND.name, function(sender, args) ---@cast sender bukkit.entity.Player
         if args[1] == nil then
             bukkit.send(sender, "§cUsage: /customitem <item>")
             return
@@ -19,8 +17,29 @@ events.onStarted(function()
             return
         end
 
-        bukkit.addItem(sender, item:buildItem():build())
-        bukkit.send(sender, comp.mm("<green>Item <dark_green>"..item.id.."</dark_green> given!"))
+        local amount ---@type integer?
+        if args[2] ~= nil then
+            amount = tonumber(args[2], 10)
+            if not numbers.between(amount, 1, numbers.INTEGER_MAX) then
+                bukkit.send(sender, "§cInvalid amount!")
+                return
+            end
+        end
+
+        local target = sender
+
+        local itemBuilder = item:buildItem()
+        if amount ~= nil then
+            itemBuilder:amount(amount)
+        end
+        bukkit.addItem(target, itemBuilder:build())
+
+        local str = "Gave"
+        if amount ~= nil then
+            str = str.." "..amount
+        end
+        str = str.." ["..item.id.."] to "..target.getName()
+        bukkit.send(sender, comp.mm(str))
     end)
         .permission(cfg.COMMAND.permission)
         .complete(function(completions, sender, args)
