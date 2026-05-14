@@ -67,20 +67,20 @@ itemEdit.registerSubCommand("damage", {
         local maxDurability = itemStack.getType().getMaxDurability()
 
         if args[2] == nil then
-            itemEdit.send(player, "Durability: §f"..itemStack.getDurability().." / "..maxDurability)
+            itemEdit.send(player, "Damage: §f"..(maxDurability - itemStack.getDurability()))
             return
         end
 
-        local durability = tonumber(args[2], 10)
-        if durability == nil then
-            itemEdit.send(player, "§cInvalid durabiltiy!")
+        local damage = tonumber(args[2], 10)
+        if damage == nil then
+            itemEdit.send(player, "§cInvalid amount!")
             return
         end
-        durability = numbers.clamp(durability, 0, maxDurability)
+        local durability = numbers.clamp(damage, 0, maxDurability)
 
         itemStack.setDurability(durability)
 
-        itemEdit.send(player, "Durability set to §f"..durability)
+        itemEdit.send(player, "Damage set to §f"..damage)
     end,
     complete = function(completions, player, args)
         if #args == 2 then
@@ -93,6 +93,49 @@ itemEdit.registerSubCommand("damage", {
                     compl[2] = max
                     compl[3] = math.floor(max / 2)
                     compl[4] = math.floor(max / 4)
+                    compl[5] = math.floor(max / 4 * 3)
+                end
+            end
+
+            complete(completions, args[2], compl)
+        end
+    end
+})
+
+itemEdit.registerSubCommand("durability", {
+    execute = function(player, args)
+        local itemStack = itemEdit.checkItemStack(player)
+        if not itemStack then return end
+
+        local maxDurability = itemStack.getType().getMaxDurability()
+
+        if args[2] == nil then
+            itemEdit.send(player, "Durability: §f"..itemStack.getDurability().." / "..maxDurability)
+            return
+        end
+
+        local durability = tonumber(args[2], 10)
+        if durability == nil then
+            itemEdit.send(player, "§cInvalid amount!")
+            return
+        end
+        durability = numbers.clamp(durability, 0, maxDurability)
+
+        itemStack.setDurability(maxDurability - durability)
+
+        itemEdit.send(player, "Durability set to §f"..durability)
+    end,
+    complete = function(completions, player, args)
+        if #args == 2 then
+            local compl = { "0" }
+
+            local itemStack = itemEdit.checkItemStack(player)
+            if itemStack then
+                local max = itemStack.getType().getMaxDurability()
+                if max > 0 then
+                    compl[2] = max
+                    compl[4] = math.floor(max / 4)
+                    compl[3] = math.floor(max / 2)
                     compl[5] = math.floor(max / 4 * 3)
                 end
             end

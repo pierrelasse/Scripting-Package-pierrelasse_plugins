@@ -47,11 +47,10 @@ events.onStarted(function()
     require("@pierrelasse/plugins/itemEdit/cmds/skull")
 
     commands.add(this.COMMAND, function(sender, args)
-        if not bukkit.isPlayer(sender) then return end
-        ---@cast sender bukkit.entity.Player
+        if not bukkit.isPlayer(sender) then return end ---@cast sender bukkit.entity.Player
 
         if args[1] == nil then
-            local s = "§cUsage: /ie <subcommand> <...>"
+            local s = "§cUsage: /ie <subcommand> [...]"
             for name in forEach(this.cmds.keySet()) do
                 s = s.."\n§8 - §7"..name
                 local cmd = this.cmds.get(name)
@@ -59,24 +58,26 @@ events.onStarted(function()
                     s = s.."§8 - §7"..cmd.desc
                 end
             end
-            this.send(sender, s)
+            bukkit.send(sender, s)
             return
         end
 
         local cmd = this.cmds.get(args[1])
         if cmd == nil then
-            sender.sendMessage("§cSub-Command not found")
+            bukkit.send(sender, "§cSub-Command not found")
             return
         end
         local execute = cmd.execute
         execute(sender, args)
     end)
-        .complete(function(completions, sender, args)
-            ---@cast sender bukkit.entity.Player
-
+        .complete(function(completions, sender, args) ---@cast sender bukkit.entity.Player
             local cmd = this.cmds.get(args[1])
-            if cmd == nil then
-                complete(completions, args[2], forEach(this.cmds.keySet()))
+            if #args == 1 then
+                if cmd == nil then
+                    complete(completions, args[1], forEach(this.cmds.keySet()))
+                end
+                return
+            elseif cmd == nil then
                 return
             end
 

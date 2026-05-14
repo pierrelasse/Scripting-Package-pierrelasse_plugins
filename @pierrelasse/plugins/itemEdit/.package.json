@@ -1,5 +1,5 @@
 {
-    "name": "pierrelasse/plugins/itemEdit",
-    "load": "@pierrelasse/plugins/itemEdit/",
-    "deps": ["bukkit/api", "pierrelasse/lib/complete"]
+  "name": "pierrelasse/plugins/itemEdit",
+  "load": "@pierrelasse/plugins/itemEdit/",
+  "deps": ["bukkit/api", "pierrelasse/lib/complete", "pierrelasse/lib/fuzzy"]
 }
