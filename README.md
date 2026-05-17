@@ -239,6 +239,8 @@ end)
 Adds /trash which opens a GUI where you can put in items to destroy them.<br>
 There is a history option which lets you restore deleted items.
 
+Configurable using:
+
 ```lua
 paman.needAndApply("pierrelasse/plugins/commands/trash", function(p)
     p.HISTORY_SIZE = 0 -- disable history
@@ -246,6 +248,30 @@ paman.needAndApply("pierrelasse/plugins/commands/trash", function(p)
 
     p.COMMAND = "trash"
     p.PERMISSION = "commands.trash"
+end)
+```
+
+### [pierrelasse/plugins/commands/worlds](./@pierrelasse/plugins/commands/worlds.lua)
+
+Multi-purpose world management command: list worlds, create, load, unload, delete, clone, and teleport between them.
+
+**Usage:**
+
+- `/worlds` list all loaded worlds (with TP buttons)
+- `/worlds <name>` info / status of a world
+- `/worlds <name> create` create a new world
+- `/worlds <name> load` load an existing world folder
+- `/worlds <name> unload [nosave]` unload a world
+- `/worlds <name> delete` permanently delete world folder
+- `/worlds <name> clone <targetName>` clone a loaded world to a new name
+- `/worlds <name> tp [current]` teleport to the world (spawn or keep current coordinates)
+
+Configurable using:
+
+```lua
+paman.needAndApply("pierrelasse/plugins/commands/worlds", function(p)
+    p.COMMAND = "worlds"
+    p.PERMISSION = "commands.worlds"
 end)
 ```
 
@@ -269,14 +295,14 @@ A very lightweight version of [github/emanondev/ItemEdit](https://github.com/ema
 
 Commands:
 
--   /ie damage
--   /ie amount
--   /ie lore
--   /ie rename
--   /ie enchant
--   /ie unbreakable
--   /ie attribute
--   /ie type
+- /ie damage
+- /ie amount
+- /ie lore
+- /ie rename
+- /ie enchant
+- /ie unbreakable
+- /ie attribute
+- /ie type
 
 ### [pierrelasse/plugins/staff/chat](./@pierrelasse/plugins/staff/chat.lua)
 

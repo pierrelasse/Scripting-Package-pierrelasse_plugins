@@ -208,5 +208,15 @@
       "bukkit/api",
       "bukkit/guimaker"
     ]
+  },
+  {
+    "name": "pierrelasse/plugins/commands/worlds",
+    "load": "@pierrelasse/plugins/commands/worlds",
+    "deps": [
+      "pierrelasse/lang",
+      "bukkit/api",
+      "pierrelasse/lib/complete",
+      "bukkit/worldmanager"
+    ]
   }
 ]
