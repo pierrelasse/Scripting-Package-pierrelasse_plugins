@@ -1,180 +1,212 @@
 [
-	{
-		"name": "pierrelasse/plugins/commands/*all",
-		"deps": [
-			"pierrelasse/plugins/commands/anvil",
-			"pierrelasse/plugins/commands/bring",
-			"pierrelasse/plugins/commands/copyinventory",
-			"pierrelasse/plugins/commands/craft",
-			"pierrelasse/plugins/commands/doas",
-			"pierrelasse/plugins/commands/ecsee",
-			"pierrelasse/plugins/commands/feed",
-			"pierrelasse/plugins/commands/fly",
-			"pierrelasse/plugins/commands/gamemode",
-			"pierrelasse/plugins/commands/goto",
-			"pierrelasse/plugins/commands/heal",
-			"pierrelasse/plugins/commands/hp",
-			"pierrelasse/plugins/commands/invsee",
-			"pierrelasse/plugins/commands/invulnerable",
-			"pierrelasse/plugins/commands/loop",
-			"pierrelasse/plugins/commands/respawn",
-			"pierrelasse/plugins/commands/speed",
-			"pierrelasse/plugins/commands/trash"
-		]
-	},
-	{
-		"name": "pierrelasse/plugins/commands/anvil",
-		"load": "@pierrelasse/plugins/commands/anvil",
-		"deps": ["bukkit/api", "pierrelasse/plugins/staff/log"]
-	},
-	{
-		"name": "pierrelasse/plugins/commands/bring",
-		"load": "@pierrelasse/plugins/commands/bring",
-		"deps": [
-			"pierrelasse/lang",
-			"bukkit/api",
-			"pierrelasse/lib/simpleTargets",
-			"pierrelasse/plugins/staff/log"
-		]
-	},
-	{
-		"name": "pierrelasse/plugins/commands/copyinventory",
-		"load": "@pierrelasse/plugins/commands/copyinventory",
-		"deps": [
-			"pierrelasse/lang",
-			"bukkit/api",
-			"pierrelasse/lib/simpleTargets",
-			"pierrelasse/plugins/staff/log"
-		]
-	},
-	{
-		"name": "pierrelasse/plugins/commands/craft",
-		"load": "@pierrelasse/plugins/commands/craft",
-		"deps": ["bukkit/api", "pierrelasse/plugins/staff/log"]
-	},
-	{
-		"name": "pierrelasse/plugins/commands/doas",
-		"load": "@pierrelasse/plugins/commands/doas",
-		"deps": ["pierrelasse/lang", "bukkit/api", "pierrelasse/plugins/staff/log"]
-	},
-	{
-		"name": "pierrelasse/plugins/commands/ecsee",
-		"load": "@pierrelasse/plugins/commands/ecsee",
-		"deps": ["pierrelasse/lang", "bukkit/api", "pierrelasse/lib/simpleTargets"]
-	},
-	{
-		"name": "pierrelasse/plugins/commands/feed",
-		"load": "@pierrelasse/plugins/commands/feed",
-		"deps": [
-			"pierrelasse/lang",
-			"bukkit/api",
-			"pierrelasse/lib/simpleTargets",
-			"pierrelasse/plugins/staff/log"
-		]
-	},
-	{
-		"name": "pierrelasse/plugins/commands/fly",
-		"load": "@pierrelasse/plugins/commands/fly",
-		"deps": [
-			"pierrelasse/lang",
-			"bukkit/api",
-			"pierrelasse/lib/complete",
-			"pierrelasse/lib/simpleTargets",
-			"pierrelasse/plugins/staff/log"
-		]
-	},
-	{
-		"name": "pierrelasse/plugins/commands/gamemode",
-		"load": "@pierrelasse/plugins/commands/gamemode",
-		"deps": [
-			"pierrelasse/lang",
-			"bukkit/api",
-			"pierrelasse/lib/complete",
-			"pierrelasse/lib/simpleTargets",
-			"pierrelasse/plugins/staff/log"
-		]
-	},
-	{
-		"name": "pierrelasse/plugins/commands/goto",
-		"load": "@pierrelasse/plugins/commands/goto",
-		"deps": [
-			"pierrelasse/lang",
-			"bukkit/api",
-			"pierrelasse/lib/simpleTargets",
-			"pierrelasse/plugins/staff/log"
-		]
-	},
-	{
-		"name": "pierrelasse/plugins/commands/heal",
-		"load": "@pierrelasse/plugins/commands/heal",
-		"deps": [
-			"pierrelasse/lang",
-			"bukkit/api",
-			"pierrelasse/lib/simpleTargets",
-			"pierrelasse/plugins/commands/feed",
-			"pierrelasse/plugins/staff/log"
-		]
-	},
-	{
-		"name": "pierrelasse/plugins/commands/hp",
-		"load": "@pierrelasse/plugins/commands/hp",
-		"deps": [
-			"pierrelasse/lang",
-			"bukkit/api",
-			"pierrelasse/lib/complete",
-			"pierrelasse/lib/simpleTargets",
-			"pierrelasse/plugins/staff/log"
-		]
-	},
-	{
-		"name": "pierrelasse/plugins/commands/invsee",
-		"load": "@pierrelasse/plugins/commands/invsee",
-		"deps": [
-			"pierrelasse/lang",
-			"bukkit/api",
-			"pierrelasse/lib/simpleTargets",
-			"pierrelasse/plugins/staff/log"
-		]
-	},
-	{
-		"name": "pierrelasse/plugins/commands/invulnerable",
-		"load": "@pierrelasse/plugins/commands/invulnerable",
-		"deps": [
-			"pierrelasse/lang",
-			"bukkit/api",
-			"pierrelasse/lib/simpleTargets",
-			"pierrelasse/plugins/staff/log"
-		]
-	},
-	{
-		"name": "pierrelasse/plugins/commands/loop",
-		"load": "@pierrelasse/plugins/commands/loop",
-		"deps": ["pierrelasse/lang", "bukkit/api", "pierrelasse/plugins/staff/log"]
-	},
-	{
-		"name": "pierrelasse/plugins/commands/respawn",
-		"load": "@pierrelasse/plugins/commands/respawn",
-		"deps": [
-			"pierrelasse/lang",
-			"bukkit/api",
-			"pierrelasse/lib/simpleTargets",
-			"pierrelasse/plugins/staff/log"
-		]
-	},
-	{
-		"name": "pierrelasse/plugins/commands/speed",
-		"load": "@pierrelasse/plugins/commands/speed",
-		"deps": [
-			"pierrelasse/lang",
-			"bukkit/api",
-			"pierrelasse/lib/complete",
-			"pierrelasse/lib/simpleTargets",
-			"pierrelasse/plugins/staff/log"
-		]
-	},
-	{
-		"name": "pierrelasse/plugins/commands/trash",
-		"load": "@pierrelasse/plugins/commands/trash",
-		"deps": ["pierrelasse/lang", "bukkit/api", "bukkit/guimaker"]
-	}
+  {
+    "name": "pierrelasse/plugins/commands/*all",
+    "deps": [
+      "pierrelasse/plugins/commands/anvil",
+      "pierrelasse/plugins/commands/bring",
+      "pierrelasse/plugins/commands/copyinventory",
+      "pierrelasse/plugins/commands/craft",
+      "pierrelasse/plugins/commands/doas",
+      "pierrelasse/plugins/commands/ecsee",
+      "pierrelasse/plugins/commands/feed",
+      "pierrelasse/plugins/commands/fly",
+      "pierrelasse/plugins/commands/gamemode",
+      "pierrelasse/plugins/commands/goto",
+      "pierrelasse/plugins/commands/heal",
+      "pierrelasse/plugins/commands/hp",
+      "pierrelasse/plugins/commands/invsee",
+      "pierrelasse/plugins/commands/invulnerable",
+      "pierrelasse/plugins/commands/loop",
+      "pierrelasse/plugins/commands/respawn",
+      "pierrelasse/plugins/commands/speed",
+      "pierrelasse/plugins/commands/trash"
+    ]
+  },
+  {
+    "name": "pierrelasse/plugins/commands/anvil",
+    "load": "@pierrelasse/plugins/commands/anvil",
+    "deps": [
+      "bukkit/api",
+      "pierrelasse/plugins/staff/log"
+    ]
+  },
+  {
+    "name": "pierrelasse/plugins/commands/bring",
+    "load": "@pierrelasse/plugins/commands/bring",
+    "deps": [
+      "pierrelasse/lang",
+      "bukkit/api",
+      "pierrelasse/lib/simpleTargets",
+      "pierrelasse/plugins/staff/log"
+    ]
+  },
+  {
+    "name": "pierrelasse/plugins/commands/copyinventory",
+    "load": "@pierrelasse/plugins/commands/copyinventory",
+    "deps": [
+      "pierrelasse/lang",
+      "bukkit/api",
+      "pierrelasse/lib/simpleTargets",
+      "pierrelasse/plugins/staff/log"
+    ]
+  },
+  {
+    "name": "pierrelasse/plugins/commands/craft",
+    "load": "@pierrelasse/plugins/commands/craft",
+    "deps": [
+      "bukkit/api",
+      "pierrelasse/plugins/staff/log"
+    ]
+  },
+  {
+    "name": "pierrelasse/plugins/commands/doas",
+    "load": "@pierrelasse/plugins/commands/doas",
+    "deps": [
+      "pierrelasse/lang",
+      "bukkit/api",
+      "pierrelasse/plugins/staff/log"
+    ]
+  },
+  {
+    "name": "pierrelasse/plugins/commands/ecsee",
+    "load": "@pierrelasse/plugins/commands/ecsee",
+    "deps": [
+      "pierrelasse/lang",
+      "bukkit/api",
+      "pierrelasse/lib/simpleTargets"
+    ]
+  },
+  {
+    "name": "pierrelasse/plugins/commands/feed",
+    "load": "@pierrelasse/plugins/commands/feed",
+    "deps": [
+      "pierrelasse/lang",
+      "bukkit/api",
+      "pierrelasse/lib/simpleTargets",
+      "pierrelasse/plugins/staff/log"
+    ]
+  },
+  {
+    "name": "pierrelasse/plugins/commands/fly",
+    "load": "@pierrelasse/plugins/commands/fly",
+    "deps": [
+      "pierrelasse/lang",
+      "bukkit/api",
+      "pierrelasse/lib/complete",
+      "pierrelasse/lib/simpleTargets",
+      "pierrelasse/plugins/staff/log"
+    ]
+  },
+  {
+    "name": "pierrelasse/plugins/commands/gamemode",
+    "load": "@pierrelasse/plugins/commands/gamemode",
+    "deps": [
+      "pierrelasse/lang",
+      "bukkit/api",
+      "pierrelasse/lib/complete",
+      "pierrelasse/lib/simpleTargets",
+      "pierrelasse/plugins/staff/log"
+    ]
+  },
+  {
+    "name": "pierrelasse/plugins/commands/goto",
+    "load": "@pierrelasse/plugins/commands/goto",
+    "deps": [
+      "pierrelasse/lang",
+      "bukkit/api",
+      "pierrelasse/lib/simpleTargets",
+      "pierrelasse/plugins/staff/log"
+    ]
+  },
+  {
+    "name": "pierrelasse/plugins/commands/heal",
+    "load": "@pierrelasse/plugins/commands/heal",
+    "deps": [
+      "pierrelasse/lang",
+      "bukkit/api",
+      "pierrelasse/lib/simpleTargets",
+      "pierrelasse/plugins/commands/feed",
+      "pierrelasse/plugins/staff/log"
+    ]
+  },
+  {
+    "name": "pierrelasse/plugins/commands/hp",
+    "load": "@pierrelasse/plugins/commands/hp",
+    "deps": [
+      "pierrelasse/lang",
+      "bukkit/api",
+      "pierrelasse/lib/complete",
+      "pierrelasse/lib/simpleTargets",
+      "pierrelasse/plugins/staff/log"
+    ]
+  },
+  {
+    "name": "pierrelasse/plugins/commands/invsee",
+    "load": "@pierrelasse/plugins/commands/invsee",
+    "deps": [
+      "pierrelasse/lang",
+      "bukkit/api",
+      "pierrelasse/lib/simpleTargets",
+      "pierrelasse/plugins/staff/log"
+    ]
+  },
+  {
+    "name": "pierrelasse/plugins/commands/invulnerable",
+    "load": "@pierrelasse/plugins/commands/invulnerable",
+    "deps": [
+      "pierrelasse/lang",
+      "bukkit/api",
+      "pierrelasse/lib/simpleTargets",
+      "pierrelasse/plugins/staff/log"
+    ]
+  },
+  {
+    "name": "pierrelasse/plugins/commands/loop",
+    "load": "@pierrelasse/plugins/commands/loop",
+    "deps": [
+      "pierrelasse/lang",
+      "bukkit/api",
+      "pierrelasse/plugins/staff/log"
+    ]
+  },
+  {
+    "name": "pierrelasse/plugins/commands/respawn",
+    "load": "@pierrelasse/plugins/commands/respawn",
+    "deps": [
+      "pierrelasse/lang",
+      "bukkit/api",
+      "pierrelasse/lib/simpleTargets",
+      "pierrelasse/plugins/staff/log"
+    ]
+  },
+  {
+    "name": "pierrelasse/plugins/commands/speed",
+    "load": "@pierrelasse/plugins/commands/speed",
+    "deps": [
+      "pierrelasse/lang",
+      "bukkit/api",
+      "pierrelasse/lib/complete",
+      "pierrelasse/lib/simpleTargets",
+      "pierrelasse/plugins/staff/log"
+    ]
+  },
+  {
+    "name": "pierrelasse/plugins/commands/strike",
+    "load": "@pierrelasse/plugins/commands/strike",
+    "deps": [
+      "pierrelasse/lang",
+      "bukkit/api",
+      "pierrelasse/lib/simpleTargets",
+      "pierrelasse/plugins/staff/log"
+    ]
+  },
+  {
+    "name": "pierrelasse/plugins/commands/trash",
+    "load": "@pierrelasse/plugins/commands/trash",
+    "deps": [
+      "pierrelasse/lang",
+      "bukkit/api",
+      "bukkit/guimaker"
+    ]
+  }
 ]

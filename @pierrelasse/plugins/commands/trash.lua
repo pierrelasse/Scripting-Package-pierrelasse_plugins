@@ -118,7 +118,7 @@ function this.openHistory(player)
 
     function ui.items()
         local playerHistory = this.history.get(playerId)
-        local playerHistoryItr = forEach(playerHistory or java.array(nil, 0))
+        local playerHistoryItr = forEach(playerHistory or arrays.create(nil, 0))
 
         local startSlot = screen:slot1(1, 1)
         local endSlot = screen:slot1(2, 9)

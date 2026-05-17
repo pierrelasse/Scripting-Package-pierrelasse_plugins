@@ -16,7 +16,7 @@ Lang.get("de"):put({
         plugins = {
             commands = {
                 loop = {
-                    doing = "Loopt x{0} ⏱{1}: {2}"
+                    doing = "Loop x{0} ⏱{1}: {2}"
                 }
             }
         }
