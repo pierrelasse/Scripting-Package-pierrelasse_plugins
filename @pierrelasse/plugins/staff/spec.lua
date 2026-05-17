@@ -10,7 +10,6 @@ Lang.get("en"):put({
                     disabled = "§aSpectator disabled!",
                     disableTTP = "§eClick to disable the spectator mode!",
                     clickToSpectate = "§eClick to spectate this player!",
-                    clickToSpectateTarget = "§eClick to spectate {0}!" -- unused
                 }
             }
         }
@@ -79,7 +78,7 @@ events.onStarted(function()
             return
         end
 
-        local target = bukkit.getPlayer(args[1])
+        local target = bukkit.player(args[1])
         if target == nil or not sender.canSee(target) then
             Lang.message(sender, "generic/targetNotFound")
             return

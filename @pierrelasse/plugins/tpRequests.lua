@@ -50,7 +50,7 @@ end
 ---@return java.array<pierrelasse.plugins.tpRequests.Request>
 function this.getRequests(receiverId)
     local map = this.requestsByReceiver.get(receiverId)
-    if map == nil then return java.array(nil, 0) end
+    if map == nil then return arrays.create(nil, 0) end
     return map.values().toArray()
 end
 

@@ -1,5 +1,8 @@
 {
 	"name": "pierrelasse/plugins/admincommands",
 	"load": "@pierrelasse/plugins/admincommands/",
-	"dep": "use pierrelasse/plugins/commands/..."
+	"dep": "use pierrelasse/plugins/commands/...",
+	"deps": [
+		"core"
+	]
 }

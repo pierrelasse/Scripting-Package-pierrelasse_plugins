@@ -96,5 +96,12 @@ function this:buildItem()
         end)
 end
 
+---@param cb fun(item: self)
+function this:use(cb)
+    cb(self)
+
+    return self
+end
+
 manager.Item = this
 return this

@@ -206,10 +206,10 @@ events.onStarted(function()
             return
         end
 
-        b = this.ITEM(victim, b)
-        if b == nil then return end
+        local b1 = this.ITEM(victim, b)
+        if b1 == nil then return end
 
-        bukkit.spawnItem(victim.getLocation(), b:build(), true)
+        bukkit.spawnItem(victim.getLocation(), b1:build(), true)
     end)
 end)
 

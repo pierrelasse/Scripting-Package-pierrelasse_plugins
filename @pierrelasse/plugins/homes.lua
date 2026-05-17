@@ -42,7 +42,7 @@ function this.getHomes(playerId)
 
     local keys = this.storage:getKeys(path)
     if keys == nil then
-        return makeArray(nil, 0)
+        return arrays.create(nil, 0)
     else
         return keys.toArray()
     end

@@ -120,8 +120,8 @@ function this.accept(receiver, request)
         3
     )
 
-    screen:button(
-        screen:slot(2, 2),
+    screen:button1(
+        screen:slot1(2, 2),
         bukkit.buildItem("RED_STAINED_GLASS_PANE")
         :name(l:tc("pierrelasse/plugins/tpRequestsCommands/accept/screen/cancel"))
         :build(),
@@ -130,8 +130,8 @@ function this.accept(receiver, request)
         end
     )
 
-    screen:set(
-        screen:slot(2, 5),
+    screen:set1(
+        screen:slot1(2, 5),
         bukkit.buildItem("PLAYER_HEAD")
         :playerHead_player(sender)
         :name(nameFormatter.prefixName(sender))
@@ -139,19 +139,19 @@ function this.accept(receiver, request)
     )
 
     local WAIT_SECONDS = 5
-    local slot = screen:slot(2, 8)
+    local slot = screen:slot1(2, 8)
     local lore = l:tcf("pierrelasse/plugins/tpRequestsCommands/accept/screen/accept/desc/"..
         (request.here and "here" or "to"), senderName)
     screen:closeable(tasks.doFor(20 * WAIT_SECONDS, 20,
         function(_, count)
-            screen:set(slot,
+            screen:set1(slot,
                 bukkit.buildItem("GREEN_STAINED_GLASS_PANE")
                 :name(l:tcf("pierrelasse/plugins/tpRequestsCommands/accept/screen/accept/wait", WAIT_SECONDS - count))
                 :lore(lore)
                 :build())
         end,
         function()
-            screen:button(
+            screen:button1(
                 slot,
                 bukkit.buildItem("LIME_STAINED_GLASS_PANE")
                 :name(l:tc("pierrelasse/plugins/tpRequestsCommands/accept/screen/accept/label"))

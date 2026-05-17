@@ -43,7 +43,7 @@ end)
 this.processedBlocks = java.map()
 
 local function getAdjacentBlocks(block)
-    return arrayOf(
+    return arrays.of(
         block.getRelative(1, 0, 0),
         block.getRelative(-1, 0, 0),
         block.getRelative(0, 1, 0),

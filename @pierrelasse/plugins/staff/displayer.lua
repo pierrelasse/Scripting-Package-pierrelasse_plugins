@@ -63,7 +63,7 @@ events.onStarted(function()
             local active = true
 
             ---@type java.array<bukkit.entity.TextDisplay>
-            local entities = java.array(nil, 6)
+            local entities = arrays.create(nil, 6)
             players.put(sender, entities)
 
             local legacyText = comp.legacySerialize(data.text)
@@ -76,7 +76,7 @@ events.onStarted(function()
                         -.5,
                         random:float(-1, 1)
                     ),
-                    "TEXT_DISPLAY"
+                    "text_display"
                 ) ---@cast entity bukkit.entity.TextDisplay
                 entity.addScoreboardTag("temp")
                 entity.addScoreboardTag("staffdisplay")

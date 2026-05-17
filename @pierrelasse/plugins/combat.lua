@@ -1,4 +1,5 @@
 local this = {
+    -- seconds
     TIMER = 20,
 
     ---@type fun(player: bukkit.entity.Player, timer: integer)

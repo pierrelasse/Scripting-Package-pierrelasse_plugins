@@ -63,7 +63,7 @@ events.onStarted(function()
             Lang.message(sender, "pierrelasse/plugins/staff/void/teleporting")
             sender.teleport(this.world.getSpawnLocation())
         else
-            local target = bukkit.getPlayer(args[1])
+            local target = bukkit.player(args[1])
             if target == nil then
                 Lang.message(sender, "generic/targetNotFound")
                 return
